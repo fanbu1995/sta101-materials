@@ -56,7 +56,7 @@ reproducibility of your analysis and results. To help get you started we are
 providing a template for you. Use the following code to download this template:
 
 ```{r load-template}
-download.file("https://www2.stat.duke.edu/courses/Summer18/sta101.001-2/uploads/rmd/lab1.Rmd", destfile = "lab1.Rmd", method = "curl", extra = "-k")
+download.file("https://github.com/fanbuduke17/sta101-materials/blob/976c39d9c73386e2cb6726d80864e6fbd80545fe/Labs/lab1/lab1.Rmd", destfile = "lab1.Rmd", method = "curl", extra = "-k")
 ```
 
 You will see a new file called `lab1.Rmd` in the Files tab on the pane in the 
@@ -81,7 +81,13 @@ and many others in the future, we will use the following R packages:
 - `dplyr`: for data wrangling
 - `ggplot2`: for data visualization
 
-These packages have already been installed for you, however you will still
+These packages may have already been installed in the RStudio container, however
+they are not, you can install them via the following commands
+```{r}
+install.packages(c('dplyr', 'ggplot2'))
+```
+
+After installing the packages, you will still
 need to load them in your working environment. To do so, type the following 
 in the console:
 
@@ -188,6 +194,7 @@ variable that comes after me".
     by hitting **Knit HTML**. Voila! The R output you need is already in your 
     report. Let's make this the first and last time we print out an entire dataset
     in our lab reports!)
+
     
 Notice that the way R has printed these data is different. When we looked at the
 complete data frame, we saw 82 rows, one on each line of the display. These data
@@ -420,6 +427,11 @@ from a lab written by Mark Hansen of UCLA Statistics.
 * * *
 
 ## How to Submit Your Lab
+
+Hit the drop down menu on the right of the **Knit** button, then select **Knit to PDF** to produce a PDF file as your lab report. 
+
+Then you can download the PDF file using the **Export** function from the RStudio container (as shown in the image below).
+
 ![rinterface](submit.png)
 
 * * *

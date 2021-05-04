@@ -1,9 +1,10 @@
 ---
-title: "Lab 0 - Intro to R and RStudio"
-author: "Name"
+title: "Lab 1 - Intro to R and RStudio"
+author: "Team member 1, team member 2, team member 3"
 date: "Date of lab session"
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     highlight: pygments
     theme: spacelab
 ---
