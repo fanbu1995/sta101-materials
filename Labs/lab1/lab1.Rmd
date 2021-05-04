@@ -55,18 +55,18 @@ arbuthnot$girls
 load(url("https://stat.duke.edu/~mc301/data/present.RData"))
 ```
 
-#### 1:
-
-
-
-#### 2:
-
-
-
-#### 3:
-
-
-
 #### 4:
+
+
+
+#### 5:
+
+
+
+#### 6:
+
+
+
+#### 7:
 
 
