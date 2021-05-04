@@ -129,7 +129,7 @@ Note that in the `summarise` function we created a list of three different numer
   -`range`
   -`min`
   -`max`
-<div>
+</div>
 
 We can also filter based on multiple criteria. Suppose we are interested in flights headed to San Francisco (SFO) in February:
 
@@ -212,4 +212,18 @@ We can also visualize the distribution of on on time departure rate across the t
 ```{r}
 qplot(x = origin, fill = dep_type, data = nycflights, geom = "bar")
 ```
+
+* * *
+
+## More Practice
+7. Mutate the data frame so that it includes a new variable that contains the average speed, `avg_speed` traveled by the plane for each flight (in mph). **Hint**: Average speed can be calculated as distance divided by number of hours of travel, and note that `air_time` is given in minutes.
+
+8. Make a scatterplot of `avg_speed` vs. distance. Describe the relationship between average speed and distance. **Hint**: Use `geom = "point"`.
+
+9. Suppose you define a flight to be “on time” if it gets to the destination on time or earlier than expected, regardless of any departure delays. Mutate the data frame to create a new variable called `arr_type` with levels `"on time"` and `"delayed"` based on this definition. Then, determine the on time arrival percentage based on whether the flight departed on time or not. What percent of flights that were `"delayed"` departing arrive `"on time"`?
+
+10. Replicate the following plot. **Hint**: The data frame plotted only contains flights from American Airlines, Delta Airlines, and United Airlines, and the points are `color`ed by `carrier`. Once you replicate the plot, determine (roughly) what the cutoff point is for departure delays where you can still expect to get to your destination on time.
+
+![example plot](colored_scatter.png)
+
 
