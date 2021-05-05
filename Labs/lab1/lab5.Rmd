@@ -84,19 +84,19 @@ load(url("https://stat.duke.edu/~mc301/data/ames.RData"))
 
 * * *
 
-## More Practice
+## On your own:
 
-#### 8: 
+#### 1: 
 
 
-```{r ex8}
+```{r oyo1}
 
 ```
 
 
-#### 9: 
+#### 2: 
 
-```{r ex9}
+```{r oyo2}
 
 ```
 

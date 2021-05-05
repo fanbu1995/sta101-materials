@@ -230,10 +230,10 @@ summary {
 </div>
 
 
-<div id="template">
-<p><strong>Your reproducible lab report:</strong> Before you get started, download the R Markdown template for this lab. Remember all of your code and answers go in this document:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download</span>(<span class="st">&quot;https://www2.stat.duke.edu/courses/Summer18/sta101.001-2/rmd/lab5.Rmd&quot;</span>, 
-         <span class="dt">destfile =</span> <span class="st">&quot;lab5.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
+<div id="download-the-lab-report-template" class="section level3">
+<h3>Download the lab report template</h3>
+<p>Before you get started, download the R Markdown template for this lab. Remember all of your code and answers go in this document:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab5/lab5.Rmd&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;lab5.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
 </div>
 <div id="sampling-from-ames-iowa" class="section level2">
 <h2>Sampling from Ames, Iowa</h2>
@@ -333,13 +333,13 @@ z_star_<span class="dv">95</span></code></pre></div>
 <li>What proportion of your confidence intervals include the true population mean? Is this proportion exactly equal to the confidence level? If not, explain why. Make sure to include your plot in your answer.</li>
 </ol>
 <hr />
-<div class="oyo">
-<h2 id="on-your-own">On your own</h2>
-<ul>
-<li><p>Pick a confidence level of your choosing, provided it is not 95%. What is the appropriate critical value?</p></li>
-<li>Calculate 50 confidence intervals at the confidence level you chose in the previous question, and plot all intervals on one plot, and calculate the proportion of intervals that include the true population mean. How does this percentage compare to the confidence level selected for the intervals? Make sure to include your plot in your answer.</li>
-</ul>
 </div>
+<div id="more-practice" class="section level2">
+<h2>More Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Pick a confidence level of your choosing, provided it is not 95%. What is the appropriate critical value?</p></li>
+<li><p>Calculate 50 confidence intervals at the confidence level you chose in the previous question, and plot all intervals on one plot, and calculate the proportion of intervals that include the true population mean. How does this percentage compare to the confidence level selected for the intervals? Make sure to include your plot in your answer.</p></li>
+</ol>
 <div id="license">
 <p>This is a product of OpenIntro that is released under a <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>. This lab was written for OpenIntro by Andrew Bray and Mine Çetinkaya-Rundel.</p>
 </div>
