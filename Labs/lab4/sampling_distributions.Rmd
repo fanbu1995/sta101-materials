@@ -3,7 +3,7 @@ title: "Foundations for statistical inference - Sampling distributions"
 #runtime: shiny
 output:
   html_document:
-    css: www/lab.css
+    css: ../lab.css
     highlight: pygments
     theme: cerulean
 ---
@@ -12,18 +12,17 @@ output:
 knitr::opts_chunk$set(eval = FALSE)
 library(dplyr)
 library(ggplot2)
-library(mosaic)
-library(shiny)
+#library(mosaic)
+#library(shiny)
 load("ames.RData")
 ```
 
-<div id="template">
-**Your reproducible lab report:** Before you get started, download the R Markdown 
+### Download the lab report template
+Before you get started, download the R Markdown 
 template for this lab. Remember all of your code and answers go in this document:
 ```{r load-template, eval = FALSE}
-download("https://www2.stat.duke.edu/courses/Summer18/sta101.001-2/uploads/rmd/lab4.Rmd", destfile = "lab4.Rmd", method = "curl", extra = "-k")
+download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab4/lab4.Rmd", destfile = "lab4.Rmd", method = "curl", extra = "-k")
 ```
-</div>
 
 In this lab, we investigate the ways in which the statistics from a random 
 sample of data can serve as point estimates for population parameters. We're 
@@ -326,18 +325,17 @@ shinyApp(
 
 * * *
 
-<div class="oyo">
 
-## On your own
+## More Practice
 
 So far, we have only focused on estimating the mean living area in homes in 
 Ames. Now you'll try to estimate the mean home price.
 
--   Take a sample of size 15 from the population and calculate the mean `price`
+8.   Take a sample of size 15 from the population and calculate the mean `price`
     of the homes in this sample. Using this sample, what is your best point estimate
     of the population mean of prices of homes?
 
--   Since you have access to the population, simulate the sampling 
+9.  Since you have access to the population, simulate the sampling 
     distribution for $\bar{x}_{price}$ by taking 2000 samples from the 
     population of size 15 and computing 2000 sample means. Store these means 
     in a vector called `sample_means15`. Plot the data, then describe the 
@@ -345,18 +343,17 @@ Ames. Now you'll try to estimate the mean home price.
     what would you guess the mean home price of the population to be? Finally, 
     calculate and report the population mean.
 
--   Change your sample size from 15 to 150, then compute the sampling 
+10.   Change your sample size from 15 to 150, then compute the sampling 
     distribution using the same method as above, and store these means in a 
     new vector called `sample_means150`. Describe the shape of this sampling 
     distribution, and compare it to the sampling distribution for a sample 
     size of 15. Based on this sampling distribution, what would you guess to 
     be the mean sale price of homes in Ames?
 
--   Of the sampling distributions from 2 and 3, which has a smaller spread?  If
+11.   Of the sampling distributions from 2 and 3, which has a smaller spread?  If
     we're concerned with making estimates that are more often close to the 
     true value, would we prefer a sampling distribution with a large or small spread?
 
-</div>
 
 <div id="license">
 This is a product of OpenIntro that is released under a [Creative Commons 
