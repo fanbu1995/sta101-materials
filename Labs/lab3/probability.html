@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -23,7 +24,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -59,7 +60,29 @@ code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
 code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -96,9 +119,7 @@ h6 {
 
 <link href="data:text/css;charset=utf-8,body%20%7B%0Acounter%2Dreset%3A%20li%3B%20%0A%7D%0Ah1%20%7B%0Afont%2Dfamily%3AArial%2C%20Helvetica%2C%20sans%2Dserif%3B%0Afont%2Dweight%3Abold%3B%0A%7D%0Ah2%20%7B%0Afont%2Dfamily%3AArial%2C%20Helvetica%2C%20sans%2Dserif%3B%0Afont%2Dweight%3Abold%3B%0Amargin%2Dtop%3A%2024px%3B%0A%7D%0Aol%20%7B%0Amargin%2Dleft%3A0%3B%20%0Apadding%2Dleft%3A0%3B%20%0A%7D%0Aol%20%3E%20li%20%7B%0Aposition%3Arelative%3B%20%0Amargin%3A0%200%2010px%202em%3B%20%0Apadding%3A10px%2080px%3B%20%0Alist%2Dstyle%3Anone%3B%20%0Aborder%2Dtop%3A2px%20solid%20%23317EAC%3B%0Abackground%3Argba%2849%2C%20126%2C%20172%2C%200%2E1%29%3B%0A%7D%0Aol%20%3E%20li%3Abefore%20%7B%0Acontent%3A%22Exercise%20%22%20counter%28li%29%3B%20%0Acounter%2Dincrement%3Ali%3B%20%0A%0Aposition%3Aabsolute%3B%0Atop%3A%2D2px%3B%0Aleft%3A%2D2em%3B%0A%2Dmoz%2Dbox%2Dsizing%3Aborder%2Dbox%3B%0A%2Dwebkit%2Dbox%2Dsizing%3Aborder%2Dbox%3B%0Abox%2Dsizing%3Aborder%2Dbox%3B%0Awidth%3A7em%3B%0A%0Amargin%2Dright%3A8px%3B%0Apadding%3A4px%3B%0Aborder%2Dtop%3A2px%20solid%20%23317EAC%3B%0Acolor%3A%23fff%3B%0Abackground%3A%23317EAC%3B%0Afont%2Dweight%3Abold%3B%0Afont%2Dfamily%3A%22Helvetica%20Neue%22%2C%20Arial%2C%20sans%2Dserif%3B%0Atext%2Dalign%3Acenter%3B%0A%7D%0Ali%20ol%2C%0Ali%20ul%20%7Bmargin%2Dtop%3A6px%3B%7D%0Aol%20ol%20li%3Alast%2Dchild%20%7Bmargin%2Dbottom%3A0%3B%7D%0A%2Eoyo%20ul%20%7B%0Alist%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0Ahr%20%7B%0Aborder%3A%201px%20solid%20%23357FAA%3B%0A%7D%0Adiv%23boxedtext%20%7B%0Abackground%2Dcolor%3A%20rgba%2886%2C%20155%2C%20189%2C%200%2E2%29%3B%0Apadding%3A%2020px%3B%0Amargin%2Dbottom%3A%2020px%3B%0Afont%2Dsize%3A%2010pt%3B%0A%7D%0Adiv%23template%20%7B%0Amargin%2Dtop%3A%2030px%3B%0Amargin%2Dbottom%3A%2030px%3B%0Acolor%3A%20%23808080%3B%0Aborder%3A1px%20solid%20%23808080%3B%0Apadding%3A%2010px%2010px%3B%0Abackground%2Dcolor%3A%20rgba%28128%2C%20128%2C%20128%2C%200%2E2%29%3B%0Aborder%2Dradius%3A%205px%3B%0A%7D%0Adiv%23license%20%7B%20margin%2Dtop%3A%2030px%3B%0Amargin%2Dbottom%3A%2030px%3B%0Acolor%3A%20%234C721D%3B%0Aborder%3A1px%20solid%20%234C721D%3B%0Apadding%3A%2010px%2010px%3B%0Abackground%2Dcolor%3A%20rgba%2876%2C%20114%2C%2029%2C%200%2E2%29%3B%0Aborder%2Dradius%3A%205px%3B%0A%7D" rel="stylesheet" type="text/css" />
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -112,30 +133,90 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -158,12 +239,13 @@ $(document).ready(function () {
 </ul>
 </div>
 <hr />
-<div id="template">
-<p><strong>Your reproducible lab report:</strong> Before you get started, download the R Markdown template for this lab. Remember all of your code and answers go in this document:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://www2.stat.duke.edu/courses/Summer18/sta101.001-2/uploads/rmd/lab3.Rmd&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;lab3.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
+<div id="download-the-lab-report-template" class="section level3">
+<h3>Download the lab report template</h3>
+<p>Before you get started, download the R Markdown template for this lab. Remember all of your code and answers go in this document:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/lab3.Rmd&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;lab3.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
 </div>
-<div id="hot-hands" class="section level2">
-<h2>Hot Hands</h2>
+<div id="data-hot-hands" class="section level2">
+<h2>Data: Hot Hands</h2>
 <p>Basketball players who make several baskets in succession are described as having a <em>hot hand</em>. Fans and players have long believed in the hot hand phenomenon, which refutes the assumption that each shot is independent of the next. However, <a href="http://www.sciencedirect.com/science/article/pii/0010028585900106">a 1985 paper</a> by Gilovich, Vallone, and Tversky collected evidence that contradicted this belief and showed that successive shots are independent events. This paper started a great controversy that continues to this day, as you can see by Googling <em>hot hand basketball</em>.</p>
 <p>We do not expect to resolve this controversy today. However, in this lab we’ll apply one approach to answering questions like this. The goals for this lab are to (1) think about the effects of independent and dependent events, (2) learn how to simulate shooting streaks in R, and (3) to compare a simulation to actual data in order to determine if the hot hand phenomenon appears to be real.</p>
 </div>
@@ -247,19 +329,21 @@ sim_basket &lt;-<span class="st"> </span><span class="kw">sample</span>(shot_out
 <p>With the results of the simulation saved as <code>sim_basket</code>, we have the data necessary to compare Kobe to our independent shooter.</p>
 <p>Both data sets represent the results of 133 shot attempts, each with the same shooting percentage of 45%. We know that our simulated data is from a shooter that has independent shots. That is, we know the simulated shooter does not have a hot hand.</p>
 <hr />
-<div class="oyo">
-<h2 id="on-your-own">On your own</h2>
-<h3 id="comparing-kobe-bryant-to-the-independent-shooter">Comparing Kobe Bryant to the Independent Shooter</h3>
-<ul>
+</div>
+<div id="more-practice" class="section level2">
+<h2>More practice</h2>
+<div id="comparing-kobe-bryant-to-the-independent-shooter" class="section level3">
+<h3>Comparing Kobe Bryant to the Independent Shooter</h3>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Using <code>calc_streak</code>, compute the streak lengths of <code>sim_basket</code>, and save the results in a data frame called <code>sim_streak</code>. Note that since the <code>sim_streak</code> object is just a vector and not a variable in a data frame, we don’t need to first select it from a data frame like we did earlier when we calculated the streak lengths for Kobe’s shots.</p></li>
 <li><p>Describe the distribution of streak lengths. What is the typical streak length for this simulated independent shooter with a 45% shooting percentage? How long is the player’s longest streak of baskets in 133 shots? Make sure to include a plot in your answer.</p></li>
 <li><p>If you were to run the simulation of the independent shooter a second time, how would you expect its streak distribution to compare to the distribution from the question above? Exactly the same? Somewhat similar? Totally different? Explain your reasoning.</p></li>
 <li><p>How does Kobe Bryant’s distribution of streak lengths compare to the distribution of streak lengths for the simulated shooter? Using this comparison, do you have evidence that the hot hand model fits Kobe’s shooting patterns? Explain.</p></li>
 <li><p>What concepts from the textbook are covered in this lab? What concepts, if any, are not covered in the textbook? Have you seen these concepts elsewhere, e.g. class, videos, textbook, previous labs, or homework problems? Be specific in your answer.</p></li>
-</ul>
-</div>
+</ol>
 <div id="license">
 <p>This is a product of OpenIntro that is released under a <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>. This lab was adapted for OpenIntro by Andrew Bray and Mine Çetinkaya-Rundel from a lab written by Mark Hansen of UCLA Statistics.</p>
+</div>
 </div>
 </div>
 
@@ -280,6 +364,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

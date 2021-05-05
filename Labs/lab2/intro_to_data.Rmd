@@ -28,7 +28,7 @@ library(ggplot2)
 We created a lab report template for you this time as well. However, you need to put in the code needed for each exercise by yourself (by copying from the `intro_to_data.html` file and perhaps adding your own code).
 
 ```{r copy template}
-download.file("https://github.com/fanbuduke17/sta101-materials/blob/045daed38a5cb05e929120b61979ba6f36580be8/Labs/lab2/lab2.Rmd", destfile = "lab2.Rmd", method = "curl", extra = "-k")
+download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab2/lab2.Rmd", destfile = "lab2.Rmd", method = "curl", extra = "-k")
 ```
 
 ### The data

@@ -46,30 +46,30 @@ load(url("https://stat.duke.edu/~mc301/data/hot_hand.RData"))
 
 * * *
 
-## On your own:
+## More practice:
 
-#### 1: 
-
-
-```{r oyo1}
-
-```
+#### 5: 
 
 
-#### 2: 
-
-
-```{r oyo2}
+```{r ex5}
 
 ```
 
 
-#### 3: 
+#### 6: 
 
 
-#### 4: 
+```{r ex6}
+
+```
 
 
-#### 5:
+#### 7: 
+
+
+#### 8: 
+
+
+#### 9:
 
 

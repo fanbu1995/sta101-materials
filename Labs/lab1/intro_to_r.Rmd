@@ -56,7 +56,7 @@ reproducibility of your analysis and results. To help get you started we are
 providing a template for you. Use the following code to download this template:
 
 ```{r load-template}
-download.file("https://github.com/fanbuduke17/sta101-materials/blob/976c39d9c73386e2cb6726d80864e6fbd80545fe/Labs/lab1/lab1.Rmd", destfile = "lab1.Rmd", method = "curl", extra = "-k")
+download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab1/lab1.Rmd", destfile = "lab1.Rmd", method = "curl", extra = "-k")
 ```
 
 You will see a new file called `lab1.Rmd` in the Files tab on the pane in the 
