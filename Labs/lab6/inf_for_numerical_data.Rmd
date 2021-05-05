@@ -1,5 +1,5 @@
 ---
-title: 'Inference for numerical data'
+title: 'Lab 6 - Inference for numerical data'
 output:
   html_document:
     css: ../lab.css
