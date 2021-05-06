@@ -1,5 +1,5 @@
 ---
-title: 'Lab 6 - Inference for numerical data'
+title: 'Lab 7 - Inference for numerical data'
 output:
   html_document:
     css: ../lab.css
@@ -19,7 +19,7 @@ library(ggplot2)
 Before you get started, download the R Markdown 
 template for this lab. Remember all of your code and answers go in this document:
 ```{r load-template, eval = FALSE}
-download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/lab6.Rmd", destfile = "lab6.Rmd", method = "curl", extra = "-k")
+download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab7/lab7.Rmd", destfile = "lab7.Rmd", method = "curl", extra = "-k")
 ```
 
 
