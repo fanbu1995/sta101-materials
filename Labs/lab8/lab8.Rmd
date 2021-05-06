@@ -1,0 +1,94 @@
+---
+title: "Lab 8 - Introduction to linear regression"
+author: "Team name"
+date: "Date of lab session"
+output: 
+  html_document: 
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+library(dplyr)
+library(ggplot2)
+```
+
+* * *
+
+## Lab report
+
+#### Load data:
+```{r load-data}
+load(url("https://stat.duke.edu/~mc301/data/mlb11.RData"))
+```
+
+
+## Exercises:
+
+#### Exercise 1: 
+
+
+
+#### Exercise 2: 
+
+
+
+#### Exercise 3: 
+
+
+
+#### Exercise 4: 
+
+
+
+
+#### Exercise 5: 
+
+
+
+#### Exercise 6:
+
+
+
+#### Exercise 7:
+
+
+
+#### Exercise 8:
+
+
+
+
+
+* * *
+
+## More Practice
+
+#### 9: 
+
+
+
+
+
+#### 10: 
+
+
+
+
+#### 11:
+
+
+
+#### 12:
+
+
+
+
+
+#### 13:
+
+
+
+
