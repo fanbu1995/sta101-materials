@@ -81,7 +81,7 @@ and many others in the future, we will use the following R packages:
 - `dplyr`: for data wrangling
 - `ggplot2`: for data visualization
 
-These packages may have already been installed in the RStudio container, however
+These packages may have already been installed in the RStudio container, however if 
 they are not, you can install them via the following commands
 ```{r}
 install.packages(c('dplyr', 'ggplot2'))
