@@ -242,7 +242,8 @@ summary {
 <div id="download-the-lab-report-template" class="section level3">
 <h3>Download the lab report template</h3>
 <p>Before you get started, download the R Markdown template for this lab. Remember all of your code and answers go in this document:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/lab3.Rmd&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;lab3.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/lab3.Rmd&quot;</span>, 
+              <span class="dt">destfile =</span> <span class="st">&quot;lab3.Rmd&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>, <span class="dt">extra =</span> <span class="st">&quot;-k&quot;</span>)</code></pre></div>
 </div>
 <div id="data-hot-hands" class="section level2">
 <h2>Data: Hot Hands</h2>
@@ -252,7 +253,7 @@ summary {
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>
 <p>Our investigation will focus on the performance of one player: Kobe Bryant of the Los Angeles Lakers. His performance against the Orlando Magic in the 2009 NBA finals earned him the title <em>Most Valuable Player</em> and many spectators commented on how he appeared to show a hot hand. Let’s load some necessary files that we will need for this lab.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://stat.duke.edu/~mc301/data/hot_hand.RData&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/hot_hand.RData&quot;</span>))</code></pre></div>
 <p>You should see in your Environment tab that two new objects appear: <code>kobe_basket</code> and <code>calc_streak</code>:</p>
 <ul>
 <li><code>kobe_basket</code>: a data frame of 133 observations and 6 variables, where every row records a shot taken by Kobe Bryant. The <code>shot</code> variable in this dataset indicates whether the shot was a hit (<code>H</code>) or a miss (<code>M</code>).</li>

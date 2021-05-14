@@ -39,7 +39,8 @@ everything you expected it to contain.
 Before you get started, download the R Markdown 
 template for this lab. Remember all of your code and answers go in this document:
 ```{r load-template, eval = FALSE}
-download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/lab3.Rmd", destfile = "lab3.Rmd", method = "curl", extra = "-k")
+download.file("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/lab3.Rmd", 
+              destfile = "lab3.Rmd", method = "curl", extra = "-k")
 ```
 
 
@@ -67,7 +68,7 @@ commented on how he appeared to show a hot hand. Let's load some necessary files
 that we will need for this lab.
 
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/hot_hand.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/hot_hand.RData"))
 ```
 
 You should see in your Environment tab that two new objects appear: `kobe_basket` 

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ```{r setup, include=FALSE}
 # DO NOT ALTER CODE IN THIS CHUNK
 knitr::opts_chunk$set(echo = TRUE)
@@ -11,7 +16,7 @@ library(ggplot2)
 
 #### Load data:
 ```{r}
-load(url("https://stat.duke.edu/~mc301/data/hot_hand.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab3/hot_hand.RData"))
 ```
 
 ## Exercises:
