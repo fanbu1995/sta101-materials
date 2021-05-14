@@ -107,7 +107,7 @@ Before you proceed, make sure to load the `inference` function. You might have t
 function already loaded in your console's enviromment from last time, but note that inorder to create a fully reproducible lab report you need to load it in your markdown document as well.
 
 ```{r load-inference}
-load(url("https://stat.duke.edu/~mc301/R/fun/inference.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/inference.RData"))
 ```
 
 If the conditions for inference are reasonable, we can either calculate

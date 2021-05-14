@@ -2,8 +2,9 @@
 title: "Lab 6 - Inference for Categorical Data"
 author: "Name"
 date: "Date of lab session"
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
@@ -21,12 +22,12 @@ library(ggplot2)
 
 #### Load data:
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/atheism.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/atheism.RData"))
 ```
 
-#### Load data:
+#### Load "inference" function:
 ```{r load-inference}
-load(url("https://stat.duke.edu/~mc301/R/fun/inference.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/inference.RData"))
 ```
 
 
