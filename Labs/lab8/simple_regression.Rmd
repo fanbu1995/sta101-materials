@@ -43,7 +43,7 @@ us best predict a team's runs scored in a season.
 Let's load up the data for the 2011 season.
 
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/mlb11.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab8//mlb11.RData"))
 ```
 
 In addition to runs scored, there are seven traditionally used variables in the 

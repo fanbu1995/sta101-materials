@@ -2,8 +2,9 @@
 title: "Lab 6 - Inference for numerical data"
 author: "Team name"
 date: "Date of lab session"
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
@@ -22,8 +23,14 @@ library(mosaic)
 
 #### Load data:
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/nc.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab7/nc.RData"))
 ```
+
+#### Load the `inference` function
+```{r load-inference}
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/inference.RData"))
+```
+
 
 #### Set a seed:
 ```{r set-seed}

@@ -36,7 +36,7 @@ observations from this data set.
 Load the `nc` data set into our workspace.
 
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/nc.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab7/nc.RData"))
 ```
 
 We have observations on 13 different variables, some categorical and some 
@@ -103,35 +103,24 @@ with `n()`.
 4.  Write the hypotheses for testing if the average weights of babies born to 
 smoking and non-smoking mothers are different.
 
-Next, we introduce a new function, `inference`, that we will use for conducting
-hypothesis tests and constructing confidence intervals. 
-
-First, load the function:
+Before we proceed, we will need to load the `inference` function. You might have this 
+function already loaded in your console's enviromment from the last lab, but note that in order to create a fully reproducible lab report you need to load it in your markdown document as well.
 
 ```{r load-inference}
-load(url("https://stat.duke.edu/~mc301/R/fun/inference.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/inference.RData"))
 ```
 
-Then, run the following:
+Run the following first:
 
 ```{r inf-weight-habit-ht, tidy=FALSE}
 inference(y = weight, x = habit, data = nc, statistic = "mean", type = "ht", null = 0, 
           alternative = "twosided", method = "theoretical")
 ```
 
-Let's pause for a moment to go through the arguments of this custom function. 
-The first argument is `y`, which is the response variable that we are 
-interested in: `weight`. The second argument is the explanatory variable, 
-`x`, which is the variable that splits the data into two groups, smokers and 
-non-smokers: `habit`. The third argument, `data`, is the data frame these
-variables are stored in. Next is `statistic`, which is the sample statistic
-we're using, or similarly, the population parameter we're estimating. In future labs
-we'll also work with "median" and "proportion". Next we decide on the `type` of inference 
-we want: a hypothesis test (`"ht"`) or a confidence interval (`"ci"`). When performing a 
-hypothesis test, we also need to supply the `null` value, which in this case is `0`, 
-since the null hypothesis sets the two population means equal to each other. 
+Similar to the usage in the last lab, the first argument is `y`, which is the response variable that we are interested in: `weight`. However, here we are comparing the means of two groups, and so we need to specify `x`, an explanatory variable that splits the data into two groups, and that will be `habit` (smokers or 
+non-smokers). Next, the `statistic` argument is set to `mean`. And then, since we are conducting hypothesis testing, the `type` is specified as `"ht"` ("hypothesis test"); when performing a  hypothesis test, we also need to supply the `null` value, which in this case is `0`, since the null hypothesis sets the two population means equal to each other. 
 The `alternative` hypothesis can be `"less"`, `"greater"`, or `"twosided"`. 
-Lastly, the `method` of inference can be `"theoretical"` or `"simulation"` based.
+Finally, the `method` of inference is chosen to be `"theoretical"` based.
 
 5.  Change the `type` argument to `"ci"` to construct and record a confidence 
 interval for the difference between the weights of babies born to nonsmoking and 
