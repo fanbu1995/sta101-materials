@@ -111,7 +111,7 @@ on top of your R Markdown document as well.
 To get you started, run the following command from your markdown file.
 
 ```{r load-abrbuthnot-data, eval=TRUE, message = FALSE}
-load(url("https://stat.duke.edu/~mc301/data/arbuthnot.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab1/arbuthnot.RData"))
 ```
 
 To do so, you can simply put your cursor on that line, and hit the **Run** button
@@ -382,7 +382,7 @@ steps, but for present day birth records in the United States. Load up the
 present day data with the following command.
 
 ```{r load-present-data}
-load(url("https://stat.duke.edu/~mc301/data/present.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab1/present.RData"))
 ```
 
 The data are stored in a data frame called `present`.

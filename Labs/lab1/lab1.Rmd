@@ -22,7 +22,7 @@ library(ggplot2)
 
 **Load Arbuthnot data**
 ```{r}
-load(url("https://stat.duke.edu/~mc301/data/arbuthnot.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab1/arbuthnot.RData"))
 ```
 
 #### Exercise 1: 
@@ -52,7 +52,7 @@ arbuthnot$girls
 
 **Load present day data**
 ```{r}
-load(url("https://stat.duke.edu/~mc301/data/present.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab1/present.RData"))
 ```
 
 #### 4:
