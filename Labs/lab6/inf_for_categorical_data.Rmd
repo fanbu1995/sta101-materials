@@ -43,6 +43,8 @@ International, click on the following link:
 
 *<https://www.webpages.uidaho.edu/~stevel/251/Global_INDEX_of_Religiosity_and_Atheism_PR__6.pdf>*
 
+(Note: it is also available on Sakai at *<https://sakai.duke.edu/x/oLiptM>*.)
+
 Take a moment to review the report then address the following questions.
 
 1.  In the first paragraph, several key findings are reported. Do these 
@@ -63,7 +65,7 @@ original data set of individual responses to the survey. Load this data
 set into R with the following command.
 
 ```{r head-data}
-load(url("https://stat.duke.edu/~mc301/data/atheism.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab6/atheism.RData"))
 ```
 
 1.   What does each row of Table 6 correspond to? What does each row of 
