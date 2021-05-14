@@ -22,7 +22,7 @@ library(ggplot2)
 
 #### Load data:
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/mlb11.RData"))
+load(url("http://www.openintro.org/stat/data/evals.RData"))
 ```
 
 
