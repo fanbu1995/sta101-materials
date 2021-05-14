@@ -1,9 +1,10 @@
 ---
 title: "Lab 2 - Intro to data"
-author: "Name"
+author: "Teammates names"
 date: "Date of lab session"
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
@@ -22,7 +23,7 @@ library(ggplot2)
 
 #### Load data:
 ```{r}
-load(url("https://stat.duke.edu/~mc301/data/nycflights.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab2/nycflights.RData"))
 ```
 
 #### Exercise 1: 

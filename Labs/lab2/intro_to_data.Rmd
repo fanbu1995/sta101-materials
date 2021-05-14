@@ -37,7 +37,7 @@ The [Bureau of Transportation Statistics (BTS)](http://www.rita.dot.gov/bts/abou
 We begin by loading the nycflights data frame. Type the following in your console to load the data:
 
 ```{r load data}
-load(url("https://stat.duke.edu/~mc301/data/nycflights.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab2/nycflights.RData"))
 ```
 
 The data set `nycflights` that shows up in your workspace is a data matrix, with each row representing an observation and each column representing a variable. R calls this data format a data frame, which is a term that will be used throughout the labs. For this data set, each observation is a single flight.
