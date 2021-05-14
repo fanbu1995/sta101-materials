@@ -2,8 +2,9 @@
 title: "Lab 4 - Sampling distributions"
 author: "Name"
 date: "Date of lab session"
-output: 
-  html_document: 
+output:
+  pdf_document: default
+  html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
@@ -24,7 +25,7 @@ library(mosaic)
 
 #### Load data:
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/ames.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab4/ames.RData"))
 ```
 
 #### Set a seed:

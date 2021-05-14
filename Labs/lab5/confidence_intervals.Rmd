@@ -115,7 +115,7 @@ In the previous lab, ``Sampling Distributions'', we looked at the population dat
 of houses from Ames, Iowa. Let's start by loading that data set.
 
 ```{r load-data}
-load(url("https://stat.duke.edu/~mc301/data/ames.RData"))
+load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab4/ames.RData"))
 ```
 
 In this lab we'll start with a simple random sample of size 60 from the 

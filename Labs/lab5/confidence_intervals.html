@@ -245,7 +245,7 @@ summary {
 <div id="the-data" class="section level2">
 <h2>The data</h2>
 <p>In the previous lab, ``Sampling Distributions’’, we looked at the population data of houses from Ames, Iowa. Let’s start by loading that data set.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://stat.duke.edu/~mc301/data/ames.RData&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/Labs/lab4/ames.RData&quot;</span>))</code></pre></div>
 <p>In this lab we’ll start with a simple random sample of size 60 from the population. Specifically, this is a simple random sample of size 60. Note that the data set has information on many housing variables, but for the first portion of the lab we’ll focus on the size of the house, represented by the variable <code>area</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">60</span>
 samp &lt;-<span class="st"> </span><span class="kw">sample_n</span>(ames, n)</code></pre></div>
