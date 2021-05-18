@@ -343,7 +343,7 @@ summary {
 <span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_dd =</span> <span class="kw">mean</span>(dep_delay)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mean_dd))</code></pre></div>
-<ol start="5" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>Which month has the highest average departure delay from an NYC airport? What about the highest median departure delay? Which of these measures is more reliable for deciding which month(s) to avoid flying if you really dislike delayed flights.</li>
 </ol>
 </div>
@@ -367,7 +367,7 @@ summary {
 <span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ot_dep_rate =</span> <span class="kw">sum</span>(dep_type <span class="op">==</span><span class="st"> &quot;on time&quot;</span>) <span class="op">/</span><span class="st"> </span><span class="kw">n</span>()) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(ot_dep_rate))</code></pre></div>
-<ol start="6" style="list-style-type: decimal">
+<ol start="5" style="list-style-type: decimal">
 <li>If you were selecting an airport simply based on on time departure percentage, which NYC airport would you choose to fly out of?</li>
 </ol>
 <p>We can also visualize the distribution of on on time departure rate across the three airports using a segmented bar plot.</p>
@@ -377,7 +377,7 @@ summary {
 </div>
 <div id="more-practice" class="section level2">
 <h2>More Practice</h2>
-<ol start="7" style="list-style-type: decimal">
+<ol start="6" style="list-style-type: decimal">
 <li><p>Mutate the data frame so that it includes a new variable that contains the average speed, <code>avg_speed</code> traveled by the plane for each flight (in mph). <strong>Hint</strong>: Average speed can be calculated as distance divided by number of hours of travel, and note that <code>air_time</code> is given in minutes.</p></li>
 <li><p>Make a scatterplot of <code>avg_speed</code> vs. distance. Describe the relationship between average speed and distance. <strong>Hint</strong>: Use <code>geom = &quot;point&quot;</code>.</p></li>
 <li><p>Suppose you define a flight to be “on time” if it gets to the destination on time or earlier than expected, regardless of any departure delays. Mutate the data frame to create a new variable called <code>arr_type</code> with levels <code>&quot;on time&quot;</code> and <code>&quot;delayed&quot;</code> based on this definition. Then, determine the on time arrival percentage based on whether the flight departed on time or not. What percent of flights that were <code>&quot;delayed&quot;</code> departing arrive <code>&quot;on time&quot;</code>?</p></li>

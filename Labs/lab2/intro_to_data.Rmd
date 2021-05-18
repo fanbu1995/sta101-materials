@@ -173,7 +173,7 @@ nycflights %>%
   arrange(desc(mean_dd))
 ```
 
-5. Which month has the highest average departure delay from an NYC airport? What about the highest median departure delay? Which of these measures is more reliable for deciding which month(s) to avoid flying if you really dislike delayed flights.
+4. Which month has the highest average departure delay from an NYC airport? What about the highest median departure delay? Which of these measures is more reliable for deciding which month(s) to avoid flying if you really dislike delayed flights.
 
 ### On time departure rate for NYC airports
 Suppose you will be flying out of NYC and want to know which of the three major NYC airports has the best on time departure rate of departing flights. Suppose also that for you a flight that is delayed for less than 5 minutes is basically “on time”. You consider any flight delayed for 5 minutes of more to be “delayed”.
@@ -205,7 +205,7 @@ nycflights %>%
   arrange(desc(ot_dep_rate))
 ```
 
-6. If you were selecting an airport simply based on on time departure percentage, which NYC airport would you choose to fly out of?
+5. If you were selecting an airport simply based on on time departure percentage, which NYC airport would you choose to fly out of?
 
 We can also visualize the distribution of on on time departure rate across the three airports using a segmented bar plot.
 
@@ -216,13 +216,13 @@ qplot(x = origin, fill = dep_type, data = nycflights, geom = "bar")
 * * *
 
 ## More Practice
-7. Mutate the data frame so that it includes a new variable that contains the average speed, `avg_speed` traveled by the plane for each flight (in mph). **Hint**: Average speed can be calculated as distance divided by number of hours of travel, and note that `air_time` is given in minutes.
+6. Mutate the data frame so that it includes a new variable that contains the average speed, `avg_speed` traveled by the plane for each flight (in mph). **Hint**: Average speed can be calculated as distance divided by number of hours of travel, and note that `air_time` is given in minutes.
 
-8. Make a scatterplot of `avg_speed` vs. distance. Describe the relationship between average speed and distance. **Hint**: Use `geom = "point"`.
+7. Make a scatterplot of `avg_speed` vs. distance. Describe the relationship between average speed and distance. **Hint**: Use `geom = "point"`.
 
-9. Suppose you define a flight to be “on time” if it gets to the destination on time or earlier than expected, regardless of any departure delays. Mutate the data frame to create a new variable called `arr_type` with levels `"on time"` and `"delayed"` based on this definition. Then, determine the on time arrival percentage based on whether the flight departed on time or not. What percent of flights that were `"delayed"` departing arrive `"on time"`?
+8. Suppose you define a flight to be “on time” if it gets to the destination on time or earlier than expected, regardless of any departure delays. Mutate the data frame to create a new variable called `arr_type` with levels `"on time"` and `"delayed"` based on this definition. Then, determine the on time arrival percentage based on whether the flight departed on time or not. What percent of flights that were `"delayed"` departing arrive `"on time"`?
 
-10. Replicate the following plot. **Hint**: The data frame plotted only contains flights from American Airlines, Delta Airlines, and United Airlines, and the points are `color`ed by `carrier`. Once you replicate the plot, determine (roughly) what the cutoff point is for departure delays where you can still expect to get to your destination on time.
+9. Replicate the following plot. **Hint**: The data frame plotted only contains flights from American Airlines, Delta Airlines, and United Airlines, and the points are `color`ed by `carrier`. Once you replicate the plot, determine (roughly) what the cutoff point is for departure delays where you can still expect to get to your destination on time.
 
 ![example plot](colored_scatter.png)
 

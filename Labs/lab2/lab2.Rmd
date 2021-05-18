@@ -66,56 +66,38 @@ load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/La
 
 ```
 
-#### Exercise 6: 
-
-
-
-```{r ex6}
-
-```
-
-
 * * *
 
-### On your own:
+### More practice
 
-#### 1:
-
-
-
-```{r oyo1}
-
-```
-
-#### 2:
+#### 6:
 
 
-
-```{r oyo2}
+```{r prac1}
 
 ```
 
-#### 3:
+#### 7:
 
 
 
-```{r oyo3}
-
-```
-
-#### 4:
-
-
-
-```{r oyo4}
+```{r prac2}
 
 ```
 
-#### 5:
+#### 8:
 
 
 
-```{r oyo5}
+```{r prac3}
+
+```
+
+#### 9:
+
+
+
+```{r prac4}
 
 ```
 
