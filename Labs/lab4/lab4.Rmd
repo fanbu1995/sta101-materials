@@ -84,31 +84,31 @@ load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/La
 
 * * *
 
-## On your own:
+## More practice:
 
-#### 1: 
-
-
-```{r oyo1}
-
-```
+#### 8: 
 
 
-#### 2: 
-
-
-```{r oyo2}
+```{r ex8}
 
 ```
 
 
-#### 3: 
+#### 9: 
 
-```{r oyo3}
+
+```{r ex9}
 
 ```
 
-#### 4: 
+
+#### 10: 
+
+```{r ex10}
+
+```
+
+#### 11: 
 
 
 

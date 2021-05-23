@@ -351,7 +351,7 @@ Ames. Now you'll try to estimate the mean home price.
     size of 15. Based on this sampling distribution, what would you guess to 
     be the mean sale price of homes in Ames?
 
-11.   Of the sampling distributions from 2 and 3, which has a smaller spread?  If
+11.   Of the sampling distributions from Exercise 9 and Exercise 10, which has a smaller spread?  If
     we're concerned with making estimates that are more often close to the 
     true value, would we prefer a sampling distribution with a large or small spread?
 
