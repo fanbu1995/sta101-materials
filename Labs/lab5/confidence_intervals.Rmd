@@ -151,7 +151,7 @@ A confidence interval for a population mean is of the following form
 
 You should by now be comfortable with calculating the mean and standard deviation of 
 a sample in R. And we know that the sample size is 60. So the only remaining building
-block is finding the appropriate critical value for a given confidence level. We can
+block is finding the appropriate critical value $z^\star$ for a given confidence level. We can
 use the `qnorm` function for this task, which will give the critical value associated
 with a given percentile under the normal distribution. Remember that confidence levels
 and percentiles are not equivalent. For example, a 95% confidence level refers to the
@@ -208,8 +208,7 @@ params <- ames %>%
 ```
 
 1.  Does your confidence interval capture the true average size of houses in 
-    Ames? If you are working on this lab in a classroom, does your neighbor's 
-    interval capture this value? 
+    Ames?
 
 1.  Each team in should have gotten a slightly different confidence interval. What 
     proportion of those intervals would you expect to capture the true population 
@@ -312,7 +311,7 @@ qplot(data = ci_data, x = ci_bounds, y = ci_id,
 ## More Practice
 
 1.   Pick a confidence level of your choosing, provided it is not 95%. What is 
-    the appropriate critical value?
+    the appropriate critical value $z^\star$ for this confidencen level?
 
 2.   Calculate 50 confidence intervals at the confidence level you chose in the 
     previous question, and plot all intervals on one plot, and calculate the proportion 
