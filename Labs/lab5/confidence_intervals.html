@@ -322,7 +322,7 @@ z_star_<span class="dv">95</span></code></pre></div>
 <p>We can accomplish this using the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ci_id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>),
                       <span class="dt">ci_bounds =</span> <span class="kw">c</span>(ci<span class="op">$</span>lower, ci<span class="op">$</span>upper),
-                      <span class="dt">capture_mu =</span> <span class="kw">c</span>(ci<span class="op">$</span>capture, ci<span class="op">$</span>capture))</code></pre></div>
+                      <span class="dt">capture_mu =</span> <span class="kw">c</span>(ci<span class="op">$</span>capture_mu, ci<span class="op">$</span>capture_mu))</code></pre></div>
 <p>And finally we can create the plot using the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data =</span> ci_data, <span class="dt">x =</span> ci_bounds, <span class="dt">y =</span> ci_id, 
       <span class="dt">group =</span> ci_id, <span class="dt">color =</span> capture_mu) <span class="op">+</span>

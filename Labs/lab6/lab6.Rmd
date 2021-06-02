@@ -94,34 +94,34 @@ load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/La
 
 * * *
 
-## On your own:
+## More Practice
 
-#### 1: 
-
-
-```{r oyo1}
-
-```
+#### 13:
 
 
-#### 2: 
-
-```{r oyo2}
+```{r ex13}
 
 ```
 
 
-#### 3:
+#### 14:
 
-```{r oyo 3}
+```{r ex14}
 
 ```
 
 
-#### 4:
+#### 15:
+
+```{r ex15}
+
+```
 
 
-```{r oyo4}
+#### 16:
+
+
+```{r ex16}
 
 
 ```
