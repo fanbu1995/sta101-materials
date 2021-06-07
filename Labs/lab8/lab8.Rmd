@@ -1,6 +1,6 @@
 ---
 title: "Lab 8 - Introduction to linear regression"
-author: "Team name"
+author: "Your names"
 date: "Date of lab session"
 output:
   pdf_document: default
@@ -82,13 +82,6 @@ load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/La
 
 
 
-#### 12:
-
-
-
-
-
-#### 13:
 
 
 
