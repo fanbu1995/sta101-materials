@@ -102,19 +102,3 @@ load(url("https://raw.githubusercontent.com/fanbuduke17/sta101-materials/main/La
 ```
 
 
-#### 9:
-
-
-```{r}
-
-
-```
-
-
-#### 10:
-
-```{r}
-
-
-```
-
