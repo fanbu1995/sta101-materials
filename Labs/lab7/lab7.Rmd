@@ -1,6 +1,6 @@
 ---
-title: "Lab 6 - Inference for numerical data"
-author: "Team name"
+title: "Lab 7 - Inference for numerical data"
+author: "Your names"
 date: "Date of lab session"
 output:
   pdf_document: default
