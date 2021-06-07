@@ -1,6 +1,6 @@
 ---
 title: "Lab 9 - Multiple linear regression"
-author: "Team name"
+author: "Names"
 date: "Date of lab session"
 output:
   pdf_document: default
@@ -78,20 +78,6 @@ load(url("http://www.openintro.org/stat/data/evals.RData"))
 
 #### Exercise 14:
 
-
-#### Exercise 15:
-
-
-#### Exercise 16:
-
-
-#### Exercise 17:
-
-
-#### Exercise 18:
-
-
-#### Exercise 19:
 
 
 * * *

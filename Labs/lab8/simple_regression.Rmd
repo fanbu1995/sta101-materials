@@ -117,7 +117,7 @@ intercept of your line as well as the sum of squares.
 
 3.  Using `plot_ss`, choose a line that does a good job of minimizing the sum of
     squares. Run the function several times. What was the smallest sum of 
-    squares that you got? How does it compare to your neighbors?
+    squares that you got?
 
 ## The linear model
 
