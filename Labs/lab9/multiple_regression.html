@@ -371,9 +371,9 @@ summary {
 <p>The blue line is the model. The shaded gray area around the line tells us about the variability we might expect in our predictions. To turn that off, use <code>se = FALSE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data =</span> evals, <span class="dt">x =</span> bty_avg, <span class="dt">y =</span> score, <span class="dt">geom =</span> <span class="st">&quot;jitter&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li>Use residual plots to evaluate whether the conditions of least squares regression are reasonable. Provide plots and comments for each one (see Lab 8 on simple linear regression for a reminder of how to make these).</li>
-</ol>
+<!-- 4.  Use residual plots to evaluate whether the conditions of least squares -->
+<!--     regression are reasonable. Provide plots and comments for each one (see -->
+<!--     Lab 8 on simple linear regression for a reminder of how to make these). -->
 </div>
 <div id="multiple-linear-regression" class="section level2">
 <h2>Multiple linear regression</h2>
@@ -405,7 +405,7 @@ evals <span class="op">%&gt;%</span><span class="st"> </span>
 <!--   geom_smooth(method = "lm", formula = y ~ x, se = FALSE) -->
 <!-- ``` -->
 <ol start="7" style="list-style-type: decimal">
-<li>What is the equation of the line corresponding to males? (<em>Hint:</em> For males, the parameter estimate for <span class="math inline">\(\beta_2\)</span> should be multiplied by 1.) For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?</li>
+<li>What is the equation of the line corresponding to males? (<em>Hint:</em> For males, the parameter estimate for <span class="math inline">\(\beta_2\)</span> should be multiplied by 1 instead of 0.) For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?</li>
 </ol>
 <p>The decision to call the indicator variable <code>gendermale</code> instead of<code>genderfemale</code> has no deeper meaning. R simply codes the category that comes first alphabetically as a <span class="math inline">\(0\)</span>. (You can change the reference level of a categorical variable, which is the level that is coded as a 0, using the<code>relevel</code> function. Use <code>?relevel</code> to learn more.)</p>
 <ol start="8" style="list-style-type: decimal">
@@ -416,21 +416,23 @@ evals <span class="op">%&gt;%</span><span class="st"> </span>
 <div id="the-search-for-the-best-model" class="section level2">
 <h2>The search for the best model</h2>
 <p>We will start with a full model that predicts professor score based on rank, ethnicity, gender, language of the university where they got their degree, age, proportion of students that filled out evaluations, class size, course level, number of professors, number of credits, average beauty rating, outfit, and picture color.</p>
-<ol start="9" style="list-style-type: decimal">
-<li>Which variable would you expect to have the highest p-value in this model? Why? <em>Hint:</em> Think about which variable would you expect to <strong>not</strong> have any association with the professor score.</li>
-</ol>
-<p>Let’s run the model…</p>
+<p>Let’s run this full model first…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m_full &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>rank <span class="op">+</span><span class="st"> </span>ethnicity <span class="op">+</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>language <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>cls_perc_eval 
              <span class="op">+</span><span class="st"> </span>cls_students <span class="op">+</span><span class="st"> </span>cls_level <span class="op">+</span><span class="st"> </span>cls_profs <span class="op">+</span><span class="st"> </span>cls_credits <span class="op">+</span><span class="st"> </span>bty_avg 
              <span class="op">+</span><span class="st"> </span>pic_outfit <span class="op">+</span><span class="st"> </span>pic_color, <span class="dt">data =</span> evals)
 <span class="kw">summary</span>(m_full)</code></pre></div>
-<ol start="10" style="list-style-type: decimal">
-<li><p>Check your suspicions from the previous exercise. Include the model output in your response.</p></li>
+<ol start="9" style="list-style-type: decimal">
+<li>Which variable has the highest p-value in this model? Accoding to the p-values, which variable is more likely to have a significant association with the professor score? <!--     Why? *Hint:* Think about which variable would you expect to **not** have any  --> <!--     association with the professor score. --></li>
+</ol>
+<!-- 10. Check your suspicions from the previous exercise. Include the model output -->
+<!--     in your response. -->
+<ol start="11" style="list-style-type: decimal">
 <li><p>Interpret the coefficient associated with the <code>ethnicity</code> variable.</p></li>
 <li><p>Drop the variable with the highest p-value and re-fit the model. Did the coefficients and significance of the other explanatory variables change? (One of the things that makes multiple regression interesting is that coefficient estimates depend on the other variables that are included in the model.) If not, what does this say about whether or not the dropped variable was collinear with the other explanatory variables?</p></li>
 <li><p>Using backward-selection and p-value as the selection criterion, determine the best model. You do not need to show all steps in your answer, just the output for the final model. Also, write out the linear model for predicting score based on the final model you settle on.</p></li>
-<li><p>Verify that the conditions for this model are reasonable using diagnostic plots.</p></li>
 </ol>
+<!-- 14. Verify that the conditions for this model are reasonable using diagnostic  -->
+<!--     plots. -->
 <!-- 17. The original paper describes how these data were gathered by taking a -->
 <!--     sample of professors from the University of Texas at Austin and including  -->
 <!--     all courses that they have taught. Considering that each row represents a  -->

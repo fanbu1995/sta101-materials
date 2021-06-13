@@ -70,15 +70,6 @@ load(url("http://www.openintro.org/stat/data/evals.RData"))
 #### Exercise 11:
 
 
-#### Exercise 12:
-
-
-#### Exercise 13:
-
-
-#### Exercise 14:
-
-
 
 * * *
 
