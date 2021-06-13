@@ -282,7 +282,7 @@ summary(m_full)
 ```
 
 
-9. Which variable has the highest p-value in this model? Accoding to the p-values, which variable is more likely to have a significant association with the professor score?
+9. Fit the model and provide the model output. Which variable has the highest p-value in this model? Accoding to the p-values, which variable is most likely to have a significant association with the professor score?
 <!--     Why? *Hint:* Think about which variable would you expect to **not** have any  -->
 <!--     association with the professor score. -->
 
@@ -299,9 +299,9 @@ summary(m_full)
     the model.) If not, what does this say about whether or not the dropped
     variable was collinear with the other explanatory variables?
 
-13. Using backward-selection and p-value as the selection criterion,
+13. Using backward-selection and p-value as the selection criterion (with significant level $\alpha = 0.05$),
     determine the best model. You do not need to show all steps in your
-    answer, just the output for the final model. Also, write out the linear
+    answer, just list the viariables you have **removed** from the model and provide the output for the **final** model. Also, write out the linear
     model for predicting score based on the final model you settle on.
 
 <!-- 14. Verify that the conditions for this model are reasonable using diagnostic  -->

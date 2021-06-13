@@ -422,14 +422,14 @@ evals <span class="op">%&gt;%</span><span class="st"> </span>
              <span class="op">+</span><span class="st"> </span>pic_outfit <span class="op">+</span><span class="st"> </span>pic_color, <span class="dt">data =</span> evals)
 <span class="kw">summary</span>(m_full)</code></pre></div>
 <ol start="9" style="list-style-type: decimal">
-<li>Which variable has the highest p-value in this model? Accoding to the p-values, which variable is more likely to have a significant association with the professor score? <!--     Why? *Hint:* Think about which variable would you expect to **not** have any  --> <!--     association with the professor score. --></li>
+<li>Fit the model and provide the model output. Which variable has the highest p-value in this model? Accoding to the p-values, which variable is most likely to have a significant association with the professor score? <!--     Why? *Hint:* Think about which variable would you expect to **not** have any  --> <!--     association with the professor score. --></li>
 </ol>
 <!-- 10. Check your suspicions from the previous exercise. Include the model output -->
 <!--     in your response. -->
 <ol start="11" style="list-style-type: decimal">
 <li><p>Interpret the coefficient associated with the <code>ethnicity</code> variable.</p></li>
 <li><p>Drop the variable with the highest p-value and re-fit the model. Did the coefficients and significance of the other explanatory variables change? (One of the things that makes multiple regression interesting is that coefficient estimates depend on the other variables that are included in the model.) If not, what does this say about whether or not the dropped variable was collinear with the other explanatory variables?</p></li>
-<li><p>Using backward-selection and p-value as the selection criterion, determine the best model. You do not need to show all steps in your answer, just the output for the final model. Also, write out the linear model for predicting score based on the final model you settle on.</p></li>
+<li><p>Using backward-selection and p-value as the selection criterion (with significant level <span class="math inline">\(\alpha = 0.05\)</span>), determine the best model. You do not need to show all steps in your answer, just list the viariables you have <strong>removed</strong> from the model and provide the output for the <strong>final</strong> model. Also, write out the linear model for predicting score based on the final model you settle on.</p></li>
 </ol>
 <!-- 14. Verify that the conditions for this model are reasonable using diagnostic  -->
 <!--     plots. -->
