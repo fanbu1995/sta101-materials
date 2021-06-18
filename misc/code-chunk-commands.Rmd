@@ -1,0 +1,29 @@
+---
+title: "How to hide code chunks"
+author: "Fan Bu"
+date: "6/17/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## If you want to hide the code chunk but still want the output
+
+You only need to add a "echo=FALSE" argument for the code cell.
+
+The output and plots will be show up but the code itself won't.
+
+```{r example 1, echo=FALSE}
+plot(1:10)
+```
+
+## If you want to show the code chunk but don't run it
+
+You only need to include a "eval=FALSE" argument. In this way, only the code itself will show up, but it won't run so there will be no output/plots.
+
+
+```{r example2, eval=FALSE}
+plot(1:10)
+```
