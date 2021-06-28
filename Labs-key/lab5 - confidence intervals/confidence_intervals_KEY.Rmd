@@ -1,0 +1,236 @@
+---
+title: "Lab 5 - Foundations for statistical inference - Confidence intervals - KEY"
+author: "Total: 90 pts"
+output: 
+  html_document: 
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+```
+
+* * *
+
+**Load Ames dataset:**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/ames.RData"))
+```
+
+**Set a seed:**
+```{r}
+set.seed(2132016)
+```
+
+
+
+## Exercises (70 points):
+
+#### Exercise 1: (14 points) Describe the distribution of homes in your sample. What would you say is the “typical” size within your sample? Also state precisely what you interpreted “typical” to mean.  
+~~~
+- 3 pts for sampling code
+- 3 pts for plot code/output
+- 4 pts for description: shape (1), mean (1), standard deviation (1), range (1) - if distribution skewed, 2 pts for median/IQR instead of mean/SD
+- 4 pts for typical size (1) and reason (3) 
+~~~
+
+```{r}
+### Take a sample of size 60 and save to "samp"
+n <- 60
+samp <- sample_n(ames, n)
+
+### Observe the distn of house sizes of the sample with a histogram
+# hist(samp$area)
+qplot(data = samp, x = area, binwidth = 250)
+
+### Summarize the distn
+samp %>%
+  summarise(xbar = mean(area), samp_med = median(area), 
+            stdev = sd(area), samp_iqr = IQR(area),
+            samp_min = min(area), samp_max = max(area),
+            samp_q1 = quantile(area, 0.25),  # first quartile, 25th percentile
+            samp_q3 = quantile(area, 0.75))  # third quartile, 75th percentile
+
+```
+
+The chosen sample is seen to be unimodal and approximately right-skewed. The 
+sizes range from 672 to 2822 sq ft with an IQR of 746.5 sq ft. If typical 
+is taken to be the average then the typical size is 1507.35 sq ft.  If
+typical is taken to be the median then the typical size is 1449.0 sq ft. In the context of the graph above, the median would be taken as the typical size. 
+
+
+#### Exercise 2: (6 points) Would you expect another team’s distribution to be identical to yours? Would you expect it to be similar? Why or why not?  
+~~~
+- 2 pts similar (1), but not identical (1)
+- 4 pts explanation: difference due to sampling variation (2), sample statistics will differ, but not greatly (2)
+~~~
+
+We would expect the another team's distribution to be similar only.  The 
+two samples would not be identical due to sampling variation; the exact 
+same 60 students would not be drawn in each of the samples.  Nonetheless we 
+would expect the shapes of the distributions to be comparable, and the 
+sample statistics (mean, median, etc.) to not differ greatly.
+
+
+#### Exercise 3: (9 points) For the confidence interval to be valid, the sample mean must be normally distributed and have standard error s/√n. What conditions must be met for this to be true?  
+
+~~~
+- 3 pts for independence
+- 3 pts for approximate normality (based on skew/sample size)
+- 3 pts for context
+~~~
+
+Conditions: 
+
+1. Since the sample is random, and comprises less than 10% of the 
+population, we can asumme that one home in the sample is independent of 
+another with repect to its area.
+
+2. The distribution of the sample is only slightly skewed, and the sample
+size is greater than 30, so we can assume that the sampling distribution of
+sample means will be nearly normal.
+
+
+#### Exercise 4: (8 points) What does "95% confidence" mean?
+
+~~~
+- 5 pts for correct interpretation
+- 3 pts for context/mentioning n = 60 (this is commonly missed, hence separate points)
+~~~
+
+95% of random samples of size 60 taken from this population will yield
+confidence intervals that capture the true average area of homes in Ames.
+
+
+#### Exercise 5: (7 points) Does your confidence interval capture the true average size of houses in Ames? 
+~~~
+- 4 pts for code to calculate CI
+- 3 pts for whether interval captures true population mean
+~~~
+```{r}
+### Calculate the critical value for the 95% CI
+z_star_95 <- qnorm(0.975) # 97.5th percentile for 95% CI
+# z_star_95
+
+### Calculate the 95% CI of the average house size
+samp %>%
+  summarise(lower = mean(area) - z_star_95 * (sd(area) / sqrt(n)),
+            upper = mean(area) + z_star_95 * (sd(area) / sqrt(n)))
+
+### Calculate the population mean
+params <- ames %>%
+  summarise(mu = mean(area))
+params
+```
+Yes, the true population mean is 1499.69, and the interval from 1383.73 to 1630.97 contains this value. (Note: the calculated lower and upper bounds of the CI may vary.)
+
+
+
+#### Exercise 6: (8 points) Each team should have gotten a slightly different confidence interval. What proportion of those intervals would you expect to capture the true population mean? Why?
+~~~
+- 3 pts for expected proportion capturing true population mean
+- 5 pts for explanation: mention use of 95% CI (3), mention actual proportion not exactly 95% due to a small number of teams (2)
+~~~
+
+We would expect 95% of the intervals to capture the population mean because we used a 95% confidence level. However since there are only a few number of teams in the class, the actual proportion may not be exactly 95%.
+
+
+#### Exercise 7: (18 points) What proportion of your confidence intervals include the true population mean? Is this proportion exactly equal to the confidence level? If not, explain why. Make sure to include your plot in your answer.  
+~~~
+- 3 pts for sampling code 
+- 5 pts for plot code for CIs (3)/output (2)
+- 2 pts for observed proportion
+- 3 pts for comparison with expected confidence level
+- 5 pts for explanation if not equal to expected conf. level
+~~~
+```{r}
+### Draw 50 samples from popn and estimate 95% CI of avg house size for each
+ci <- do(50) * ames %>%
+                  sample_n(n) %>%
+                  summarise(lower = mean(area) - z_star_95 * (sd(area) / sqrt(n)),
+                            upper = mean(area) + z_star_95 * (sd(area) / sqrt(n)))
+
+### Observe first 5 intervals
+# ci %>%
+#   slice(1:5)
+
+### Create flag to check if interval captures popn mean mu
+ci <- ci %>%
+  mutate(capture_mu = ifelse(lower < params$mu & upper > params$mu, "yes", "no"))
+
+### Calculate proportion that capture the mean
+prop.table(table(ci$capture_mu))
+
+### Rearrange the df ci to have one interval per row
+ci_data <- data.frame(ci_id = c(1:50, 1:50),
+                      ci_bounds = c(ci$lower, ci$upper),
+                      capture_mu = c(ci$capture_mu, ci$capture_mu))
+
+### Plot the coverage results
+qplot(data = ci_data, x = ci_bounds, y = ci_id, 
+      group = ci_id, color = capture_mu) +
+  geom_point(size = 2) +  # add points at the ends, size = 2
+  geom_line() +           # connect with lines
+  geom_vline(xintercept = params$mu, color = "darkgray")
+```
+
+96% of my CIs include the true population mean.  This does not equal the confidence level because we only took 50 samples; we would only expect coverage close to the nominal level with a larger sample of intervals.  Much like the distributions of the sizes of 60 houses differed in exercises 1 and 2, there is sampling variation present in this exercise as well.
+
+
+* * *
+
+## More Practice (20 points):
+
+#### 8: (5 points) Pick a confidence level of your choosing, provided it is not 95%. What is the appropriate critical value $z^\star$ for this confidencen level? 
+~~~
+- 3 pts for picking conf. level aside from 95% (1) and code for critical value (2)
+- 2 pts for output
+~~~
+```{r}
+### Critical value for a 90% CI
+z_star_90 = qnorm(0.95)
+# z_star_90
+```
+Ex: 90% confidence interval has a critical value of 1.645.
+
+
+#### 9: (15 points) Calculate 50 confidence intervals at the confidence level you chose in the previous question, and plot all intervals on one plot, and calculate the proportion of intervals that include the true population mean. How does this percentage compare to the confidence level selected for the intervals? Make sure to include your plot in your answer. 
+~~~
+- 3 pts for sampling code
+- 5 pts for plot code for CIs (3)/output (2)
+- 3 pts for comparison with expected confidence level
+- 4 pts for mentioning difference in expected and actual conf. levels due to sampling variation
+~~~
+```{r}
+### Draw 50 samples from popn and estimate 90% CI of avg house size for each
+ci.90 <- do(50) * ames %>%
+                  sample_n(n) %>%
+                  summarise(lower = mean(area) - z_star_90 * (sd(area) / sqrt(n)),
+                            upper = mean(area) + z_star_90 * (sd(area) / sqrt(n)))
+
+### Create flag to check if interval captures popn mean mu
+ci.90 <- ci.90 %>%
+  mutate(capture_mu = ifelse(lower < params$mu & upper > params$mu, "yes", "no"))
+
+### Calculate proportion that capture the mean
+prop.table(table(ci.90$capture_mu))
+
+### Rearrange the df ci.90 to have one interval per row
+ci_data.90 <- data.frame(ci_id = c(1:50, 1:50),
+                      ci_bounds = c(ci.90$lower, ci.90$upper),
+                      capture_mu = c(ci.90$capture_mu, ci.90$capture_mu))
+
+### Plot the coverage results
+qplot(data = ci_data.90, x = ci_bounds, y = ci_id, 
+      group = ci_id, color = capture_mu) +
+  geom_point(size = 2) +  # add points at the ends, size = 2
+  geom_line() +           # connect with lines
+  geom_vline(xintercept = params$mu, color = "darkgray")
+```
+
+The proportion of 90% CIs that capture the population mean is 84%.  This is less than the confidence level of the intervals due to sampling variation in the estimation procedure.

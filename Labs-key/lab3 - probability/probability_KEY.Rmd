@@ -1,0 +1,145 @@
+---
+title: "Lab 3 - Probability - KEY"
+author: "Total: 90 pts"
+date: ""
+output: 
+  html_document: 
+    highlight: pygments
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+
+**Load Hot Hand files:**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/hot_hand.RData")) 
+```
+
+## Exercises: (50 pts)
+
+#### Exercise 1: 
+
+~~~
+10 pts - 5 pt for each
+
+~~~
+
+A streak length of 1 means a hit followed by a miss. 
+
+A streak length of 0 is just a miss (which must occur after a miss that ended the preceeding streak).
+
+#### Exercise 2:
+
+~~~
+15 pts 
+* 5 pts for `kobe_streak`
+* 5 pts for plot
+* 5 pts for intepretation
+~~~
+
+The distribution of Kobe's streaks is unimodal and right skewed. The typical length 
+of a streak is 0 since the median of the distribution is at 0. The IQR of the 
+distribution is 1. The longest streak of baskets is of length 4. Streak lengths of 
+3 and 4 are unusually high compared to the rest of the distribution.
+
+```{r plot-streak-kobe}
+kobe_streak <- calc_streak(kobe_basket$shot)
+qplot(data = kobe_streak, x = length, geom = "histogram", binwidth = 1)
+```
+
+#### Exercise 3: 
+
+~~~
+15 pts 
+* 5 pt for `sim_unfair_coin`
+* 10 pt for `table(sim_unfair_coin)`)
+~~~
+
+81 tails and 19 heads (Note: Results will vary. A seed of `9102015` indicates they probably did not follow the directions.)
+
+```{r set-seed}
+set.seed(9102015)
+coin_outcomes <- c("heads", "tails")
+sim_unfair_coin <- sample(coin_outcomes, size = 100, replace = TRUE, 
+                          prob = c(0.2, 0.8))
+table(sim_unfair_coin)
+```
+
+#### Exercise 4: 
+
+~~~
+10 pts 
+* 4pt for correct size
+* 3pt for correct probablity
+* 3pt for assigning to correct object `simbasket`
+~~~
+
+```{r sim-basket-prob}
+shot_outcomes <- c("H", "M")
+sim_basket <- sample(shot_outcomes, size = 133, replace = TRUE,
+                     prob = c(0.45, 0.55))
+```
+
+* * *
+
+## More practice (40pts):
+
+#### 1
+~~~
+8pts
+~~~
+
+```{r}
+sim_streak <- calc_streak(sim_basket)
+```
+
+#### 2
+~~~
+8 pts 
+* 4 pts for intepretation
+* 4 pts for plot
+~~~
+
+The distribution of simulated streaks is also unimodal and right skewed. The 
+typical length of a streak is 0 since the median of the distribution is at 0. The 
+IQR of the distribution is 1.25. Streak lengths of 4 and above are unusually high 
+compared to the rest of the distribution. (Note: Answers will vary.)
+
+```{r}
+qplot(data = sim_streak, x = length, geom = "histogram", binwidth = 1)
+sim_streak %>%
+  summarise(median(length), IQR(length))
+```
+
+#### 3: 
+~~~
+8 pts - Should be similiar, but not exactly the same.
+~~~ 
+
+We would expect the distribution to be somewhat similar, i.e. unimodal and right 
+skewed with a median around 0. But we wouldn't get the exact same streaks, and therefore the distribution will not be exactly the same.
+
+#### 4: 
+~~~
+11 pts 
+* 5 pt for similar
+* 6 pt for no evidence for hot hand
+~~~
+
+The distributions look very similar. Therefore, there doesn't appear to be 
+evidence for Kobe Bryant's hot hand.
+
+#### 5: 
+~~~
+5 pts - something reasonable
+~~~
+
+In lecture and homework problems we have seen the concepts of independence and 
+dependence as well as conditional probabilities. Simulations are something we've 
+seen in a class activity in lecture. (Note: Answers will vary.)

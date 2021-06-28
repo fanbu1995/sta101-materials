@@ -1,0 +1,351 @@
+---
+title: "Lab 9 - Multiple linear regression - KEY"
+author: "total - 90 pts"
+date: ""
+output:
+  html_document:
+    theme: cerulean
+    highlight: pygments
+    fig_height: 4
+    fig_width: 6
+---
+
+#### Load data
+
+```{r, message = FALSE, warning = FALSE, include = FALSE}
+require(dplyr); require(mosaic); require(ggplot2); require(magrittr)
+```
+
+```{r, message = FALSE}
+load(url("http://www.openintro.org/stat/data/evals.RData"))
+```
+
+
+#### Exercise 1:
+
+~~~
+6pts:
+- 3pt for observational study
+- 3pt for "association"
+
+~~~
+
+This was an **observational** study, so any causal claims made about the relationship between professors' appearances and their evaluations are not justified. 
+
+
+The research question could be rephrased to ask whether beauty is **associated** with higher course evaluations.
+
+<!-- #### Exercise 2:  -->
+
+<!-- ~~~ -->
+<!-- 5pts: -->
+<!-- - 2pt for code -->
+<!-- - 1pt for describing distribution using plot (left-skewed, unimodal) -->
+<!-- - 1pt for reporting summary statistics (mean is 4.17, sd is 0.54, IQR = 0.8, etc.) -->
+<!-- - 1pt for if it's expected (any reasonable answer is okay) -->
+<!-- ~~~ -->
+
+
+<!-- ```{r, message=FALSE} -->
+<!-- qplot(x = score, data = evals, geom = "histogram") -->
+<!-- evals %>% -->
+<!--   summarise(xbar = mean(score), s = sd(score), iqr = IQR(score)) -->
+<!-- ``` -->
+
+<!-- #### Exercise 3 (5 points): Excluding score, select two other variables and describe their relationship using an appropriate visualization (scatterplot, side-by-side boxplots, or mosaic plot). -->
+
+<!-- ~~~ -->
+<!-- 5pts: -->
+<!-- - 2pts for plots that makes sense for variables chosen and describing relationship -->
+<!-- - 2pts for "does not appear to be a relationship" -->
+<!-- - 1pts for correct context -->
+
+<!-- ~~~ -->
+
+<!-- There **does not appear to be a relationship** between age and beauty average. Based on the scatter plot, there may be a slight negative linear relationship. -->
+
+<!-- ```{r} -->
+<!-- qplot(x=age, y = bty_avg, data=evals) -->
+<!-- ``` -->
+
+
+
+#### Exercise 2: 
+
+~~~
+6pts:
+- 3pts for many points with exact same coords
+- 3pts for `jitter` making it clearer how many points lay in the same region
+~~~
+
+The initial scatter plot had many points with the **exact same coordinates**, making it hard to tell where the data was concentrated.
+
+
+Jittering adds a little random noise to **make it clearer how many points** lay in the region of interest. 
+
+
+```{r}
+qplot(data = evals, x=bty_avg, y=score, geom="jitter")
+```
+
+
+#### Exercise 3:
+~~~
+14pts:
+- 3pt for plot
+- 3pt for linear model equation
+- 3pt for association
+- 2pt for "significant predictor"
+- 3pt for context
+~~~
+
+```{r}
+m_bty <- lm(evals$score ~ evals$bty_avg, data=evals)
+summary(m_bty)
+qplot(y=score, x=bty_avg, data=evals, geom="jitter") + geom_smooth(method="lm")
+```
+
+The equation for the linear model is $$\hat{\text{score}_i} = 3.88034 + .06664\times \text{bty_avg}_i.$$ 
+
+
+The positive slope means that a professor being more beautiful is **associated with a higher score.** 'bty_avg' is a **significant predictor** according to the regression summary. The association is not extremely strong, so it may not be of great practical importance, but that depends upon how professor reviews are used, obviously.
+
+
+<!-- #### Exercise 4: -->
+
+<!-- ~~~ -->
+<!-- 6pts: -->
+<!-- - 3pt for "constant variance" -->
+<!-- - 3pt for "normality" -->
+<!-- ~~~ -->
+
+<!-- **Constant Variance** -->
+
+
+<!-- As we can see in the plot below, the constant variance assumption doesn't appear to be violated.  -->
+
+<!-- ```{r} -->
+<!-- qplot(x = .fitted, y = .resid, data = m_bty) + -->
+<!--   geom_hline(yintercept = 0, linetype = "dashed") + -->
+<!--   xlab("Fitted values") + -->
+<!--   ylab("Residuals") -->
+<!-- ``` -->
+
+<!-- **Normality** -->
+
+
+<!-- The residuals do not appear to be normally distributed. The histogram is left-skewed and the QQ-plot shows clear deviations from the diagonal. (either histogram or qqplot is fine) -->
+
+<!-- ```{r} -->
+<!-- qplot(x = .resid, data = m_bty, geom = "histogram", binwidth = .2) + -->
+<!--   xlab("Residuals") -->
+<!-- qplot(sample = .resid, data = m_bty, stat = "qq") -->
+<!-- ``` -->
+
+#### Exercise 4:
+
+~~~
+11pts:
+- 3pt for fitting the new model
+- 4pt for constant variance assumption
+- 4pt for normality assumption
+~~~
+
+Fitting the new model:
+
+```{r}
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+summary(m_bty_gen)
+```
+
+
+The **constant variance assumption doesn't appear to be violated** when we plot them against 'bty_avg'.
+
+```{r}
+qplot(x = .fitted, y = .resid, data = m_bty_gen) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  xlab("Fitted values") +
+  ylab("Residuals")
+```
+
+The residuals do not appear to be normally distributed. The histogram is left-skewed and the QQ-plot **shows clear deviations from the diagonal**.
+
+```{r}
+qplot(x = .resid, data = m_bty_gen, geom = "histogram", binwidth = .25) +
+  xlab("Residuals")
+qplot(sample = .resid, data = m_bty_gen, stat = "qq")
+```
+
+
+#### Exercise 5:
+
+~~~
+6pts:
+- 3pt for significant predictor
+- 3pt for discussing change of coefficients. 
+
+~~~
+
+bty_avg is still a **significant predictor of score**.
+
+
+The parameter estimate changed from **0.0666** in the model where only bty_avg and the intercept are included to **0.0742** in the model where we also include gender. This **isn't a huge change**.
+
+
+#### Exercise 6:
+
+~~~
+6pts:
+- 3pt for equation
+- 3pt for male tends to have higher score
+~~~
+
+The **equation of the line** corresponding to males is $$\hat{\text{score}_i} = 3.7473 + 0.0742  \times \text{bty_avg}_i + 1 \times 0.1724$$
+
+
+The equation tells us that if two professors have the same beauty rating but one is male and the other is female, the **male will tend to have the higher score** This comes from the last term in the above equation.
+
+#### Exercise 7:
+
+~~~
+6pts:
+- 3pt for fitting the model
+- 3pt for dummy variable levels
+~~~
+
+R creates dummy variables for **all but one of the levels** of the categorical variable.
+```{r}
+m_bty_rank <- lm(score ~ bty_avg + rank, data = evals)
+summary(m_bty_rank)
+```
+
+
+#### Exercise 8:
+
+~~~
+9pts:
+- 3pts for fitting the full model and showing the output
+- 3pts for the highest p-value variable
+- 3pts for the lowest p-value variable
+~~~
+
+```{r}
+m_full <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval 
+             + cls_students + cls_level + cls_profs + cls_credits + bty_avg 
+             + pic_outfit + pic_color, data = evals)
+summary(m_full)
+```
+
+`cls_profs` (number of professors teaching the class) has the highest p-value.
+
+`cls_credits` is most likely to be significantly associated with the score of professors. (Pick the one with the lowest p-value.)
+
+<!-- I would expect one of the cls variables which describe how many students are in the class to have the highest p-value, because these seem like they would be **least likely to be associated with the response** -->
+
+<!-- #### Exercise 10: -->
+<!-- ~~~ -->
+<!-- 6pts: -->
+<!-- - 4pt for fitting model and providing the output -->
+<!-- - 2pt for suspicions correct/not correct -->
+<!-- ~~~ -->
+
+
+#### Exercise 9:
+
+~~~
+6pts:
+- 3pts for statement like "all else held constant"
+- 3pts for change in professor score if instructor is non-minority
+~~~
+
+Being a non-minority is associated with a higher score. In particular, with all other variables held constant, non-minority instructors have scores .12 points higher, on average.
+
+
+#### Exercise 10:
+~~~
+10pts:
+- 3pt for choosing the correct variable to remove
+- 3pt for fitting model
+- 4pt for discussion
+~~~
+
+**cls_profs** had the highest p-value, so we'll **remove it from the model**.
+
+
+```{r}
+m_full <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval 
+             + cls_students + cls_level + cls_credits + bty_avg 
+             + pic_outfit + pic_color, data = evals)
+summary(m_full)
+```
+
+It doesn't appear that the direction of any of the coefficient estimates changed, but the **magnitudes changed at least slightly**. If the dropped variable was **collinear, then we might expect sign changes or big changes in magnitude**.
+
+
+#### Exercise 11:
+
+~~~
+10pts:
+- 4pts for listing the variables removed in backward elimination
+- 3pts for output of the final model (all p-values should be < 0.05)
+- 3pts for writing out the formula
+~~~
+
+
+```{r}
+final_model <- lm(score ~  ethnicity + gender + language + age + cls_perc_eval + cls_credits + bty_avg + pic_color, data = evals)
+summary(final_model)
+```
+
+
+<!-- #### Exercise 14 -->
+<!-- ~~~ -->
+<!-- 6pts: -->
+<!-- - 3pt for normality assumption -->
+<!-- - 3pt for constant variance assumption -->
+<!-- ~~~ -->
+
+<!-- As we can see in the following plots, the **residuals do not appear to be normally distributed**. The histogram is left-skewed and the QQ-plot shows clear deviations from the diagonal. -->
+
+<!-- ```{r} -->
+<!-- qplot(x = .resid, data = final_model, geom = "histogram", binwidth = .2) + -->
+<!--   xlab("Residuals") -->
+<!-- qplot(sample = .resid, data = final_model, stat = "qq")  -->
+<!-- ``` -->
+
+<!-- Constant variance - **doesn't appear to be met** - there is a fan shape in the residuals -->
+<!-- ```{r} -->
+<!-- qplot(x = .fitted, y = .resid, data =final_model) + -->
+<!--   geom_hline(yintercept = 0, linetype = "dashed") + -->
+<!--   xlab("Fitted values") + -->
+<!--   ylab("Residuals") -->
+<!-- ``` -->
+
+
+<!-- #### Exercise 17: -->
+
+<!-- ~~~ -->
+<!-- 2pts -->
+<!-- ~~~ -->
+
+<!-- If the same professor taught more than one course, we would expect that those residuals would be correlated, which **violates the standard linear regression assumptions.** -->
+
+<!-- #### Exercise 18 -->
+
+<!-- ~~~ -->
+<!-- 3pts -->
+<!-- - only give partial credit if not mention all characteristics -->
+<!-- ~~~ -->
+
+<!-- The professors we would expect to have the highest reviews generally would be non-minority, male, native english speakers, young, teaching a one credit course, attractive, with a black and white photo, and a large percentage of students filling out evaluations. -->
+
+
+<!-- #### Exercise 19: -->
+
+<!-- ~~~ -->
+<!-- 3pts: -->
+<!-- - 2pt for where it could generalize -->
+<!-- - 1pt for where it wouldn't -->
+<!-- ~~~ -->
+
+<!-- I think it would be reasonable to generalize these conclusions to **other large state research universities** The conclusions might **generalize less well at** community colleges, small private liberal arts colleges, or other schools with very different demographics.   -->

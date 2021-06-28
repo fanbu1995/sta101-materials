@@ -1,0 +1,251 @@
+---
+title: "Lab 8 - Introduction to linear regression - KEY"
+author: total - 90 points
+output: 
+  html_document: 
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+* * *
+
+**Load MLB11 dataset:**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/mlb11.RData"))
+```
+
+
+## Exercises:
+
+#### Exercise 1: 
+
+~~~
+6pts 
+- 3 for plot 
+- 3 for linear relation
+~~~
+
+```{r}
+qplot( x = at_bats, y = runs, data = mlb11)
+```
+
+Yes, there is a liner relationship between runs and at_bats since there is no apparent curvature. Given data of at_bats, we can predict number of runs with a linear model.
+
+
+#### Exercise 2: 
+
+~~~
+12pts 
+- 4 for relationship 
+- 4 for form/direction/strength
+- 4 for outlier - name not required
+~~~
+
+There is a positive linear relationship between the two variables. Correlation coefficient is 0.610627 (indicating a relatively strong positive correlation). New York Yankees is an outlier: the distance from the actual number of runs to the fitted value given number at_bats are unusually large.
+
+
+#### Exercise 3: 
+
+~~~
+8pts total
+- 4 for the plot made by plot_ss
+- 4 for reporting a sum of squares
+~~~
+
+```{r}
+plot_ss(x = at_bats, y = runs, data = mlb11)
+plot_ss(x = at_bats, y = runs, data = mlb11, showSquares = TRUE)
+```
+
+Answers may vary. Some number > 123721.9.
+
+#### Exercise 4: 
+
+~~~
+8pts total
+- 4 for regression equation 
+- 4 for explanation
+~~~
+
+```{r}
+model=lm(runs~homeruns,data=mlb11)
+summary(model)
+```
+
+yhat=415.2389 + 1.8345 * homeruns
+
+For each unit increase in homeruns, on average runs will increase 1.8345 units.
+
+
+#### Exercise 5:
+
+~~~
+12pts total 
+- 5 for prediction
+- 4 for comparing the prediction with the actual data and calculating the residual
+- 3 for overestimation
+~~~
+
+```{r}
+m1 = lm(runs ~ at_bats, data = mlb11)
+
+predictionPoint = m1$coefficients[1]+m1$coefficients[2]*5578
+
+AB_5579 = mlb11 %>% 
+  filter(at_bats == 5579) %>%
+  select(runs)
+AB_5579 - predictionPoint
+```
+
+
+residual = actual data - prediction
+
+The residual is -14.96 and thus our model overestimates the value here
+
+
+#### Exercise 6:
+~~~
+5pts total
+~~~
+
+There is no pattern in residual plot, thus the relationship between runs and at_bats is linear.
+
+
+#### Exercise 7:
+
+~~~
+5pts total
+~~~
+
+There is a bimodal pattern in the histogram, but the overall shape is normally distributed. The Normal Q-Q Plot shows some periodic patterns, but the dots are close to the Q-Q line.
+
+
+#### Exercise 8:
+~~~
+5pts total
+~~~
+
+Yes, the variability of runs doesn't change with different values of at_bats.
+
+* * *
+
+## More Practice
+
+#### 9:
+~~~
+9pts total
+- 2 for choosing a variable that is not "at_bats"
+- 2 for making a scatterplot
+- 2 for fitting a linear model
+- 3 for the relationship
+~~~
+
+Answers may vary. I chose wins as a predictor.
+
+```{r}
+qplot(x = wins, y = runs, data = mlb11)
+
+model2=lm(runs~wins,data=mlb11)
+```
+
+Since there is no apparent curvature, there is linear relationship between wins and runs.
+
+
+#### 10: 
+
+~~~
+7pts total
+- 2 *each* for reporting $R^2$ of each of the two models, 
+- 3 for conclusion
+~~~
+
+```{r}
+summary(m1)$r.squared
+summary(model2)$r.squared
+```
+
+$R^2$ of model2 = 0.361 is slightly lower than $R^2$ of m1 = 0.373. `At_bats` is a slightly better predictor of runs than wins.
+
+
+<!-- #### 11: -->
+
+<!-- ~~~ -->
+<!-- 10pts total -->
+<!-- - 5 for using correct predictor  -->
+<!-- - 5 for plots/model -->
+<!-- ~~~ -->
+
+<!-- ```{r} -->
+<!-- cor(mlb11$runs,mlb11$at_bats) -->
+<!-- cor(mlb11$runs,mlb11$hits) -->
+<!-- cor(mlb11$runs,mlb11$homeruns) -->
+<!-- cor(mlb11$runs,mlb11$bat_avg) -->
+<!-- cor(mlb11$runs,mlb11$strikeouts) -->
+<!-- cor(mlb11$runs,mlb11$stolen_bases) -->
+<!-- cor(mlb11$runs,mlb11$wins) -->
+<!-- ``` -->
+
+<!-- `bat_avg` has the highest $R^2$ (since in univariate linear regression, correlation coefficient ^2 = $R^2$). -->
+
+<!-- ```{r} -->
+<!-- qplot(x = bat_avg, y = runs, data = mlb11) -->
+<!-- model3=lm(runs~bat_avg,data=mlb11) -->
+<!-- summary(model3) -->
+<!-- ``` -->
+
+<!-- Note: they only have to include the plot of the best predictor -->
+
+<!-- #### 12: -->
+
+<!-- ~~~ -->
+<!-- 10pts total -->
+<!-- - 5 for checking curvature -->
+<!-- - 5 for finding the best predictor -->
+<!-- ~~~ -->
+
+<!-- ```{r} -->
+<!-- qplot(x = new_onbase, y = runs, data = mlb11) -->
+<!-- qplot(x = new_slug, y = runs, data = mlb11) -->
+<!-- qplot(x = new_obs, y = runs, data = mlb11) -->
+<!-- cor(mlb11$runs,mlb11$new_onbase) -->
+<!-- cor(mlb11$runs,mlb11$new_slug) -->
+<!-- cor(mlb11$runs,mlb11$new_obs) -->
+<!-- ``` -->
+
+<!-- The scatter plots show no curvature, thus we can use correlation to examine how well the predictors predict runs. -->
+
+<!-- new_obs and runs has the highest correlation. Therefore, it is the best predictor among the three new variables. -->
+
+<!-- The correlation betwen new_obs and runs is higher than the correlation between any of the traditional predictors and runs.  -->
+
+<!-- new_obs is the best predictor. This makes sense because this variable takes into account not only how often a players get on base, but also how many bases they get off their at bat (in equal weighting). If more players are getting on base with better hits, there should be more runs scored. -->
+
+
+#### 11: 
+~~~
+13pts total
+- 5 for residual plot
+- 5 for histogram/ Q-Q plot
+- 3 for stating whether or not the conditions are met
+~~~
+
+```{r}
+modelnew=lm(runs~new_obs,data=mlb11)
+qplot(x = .fitted, y = .resid, data = modelnew) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  xlab("Fitted values") +
+  ylab("Residuals")
+qplot(x = .resid, data = modelnew, geom = "histogram", binwidth = 25) +
+  xlab("Residuals")
+qplot(sample = .resid, data = modelnew, stat = "qq")
+
+```
+
+The residuals are centered around 0, with no apparent change due to different values of predictor. From the histogram and Q-Q plot, they are normally distributed.
+

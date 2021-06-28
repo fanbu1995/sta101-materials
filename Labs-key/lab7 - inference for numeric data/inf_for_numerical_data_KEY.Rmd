@@ -1,0 +1,176 @@
+---
+title: "Lab 7 - Inference for Numerical Data KEY"
+author: "Total: 90 pts"
+output: 
+  html_document: 
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+library(dplyr)
+library(ggplot2)
+#library(oilabs)
+```
+
+
+* * *
+
+**Load NC dataset:**
+```{r load-data}
+load(url("https://stat.duke.edu/~mc301/data/nc.RData"))
+```
+
+## Exercises (62 points):
+
+#### Exercise 1: (6 pts)
+
+Each case is a birth; there are 1000 cases/observations in this sample.
+
+
+#### Exercise 2: (18 pts)
+
+~~~
+- 5 pts *each* for shape/outliers, center, spread
+- 3 pts for appropriate context of baby birthweights
+~~~
+
+The median weight for babies born to non-smoking parents is higher than the median for smoking parents.  The max, 1st, and 3rd quantiles are also higher. The IQR seems to be very close between the two groups. Both distributions are roughly symmetric, but non-smokers tend to have more values considered as outliers by the default settings. This could imply that the size of that group may be much larger than the smoking group.
+
+```{r}
+qplot(x=habit, y=weight, data=nc, geom = "boxplot")
+```
+
+#### Exercise 3: (20 pts) 
+
+~~~
+- 5 pts for Yes. 
+- 5 pts *each* for independence, sample size, no strong skew
+~~~
+
+From information given, we assume that cases are independent (both within smoking habit group and between smoking habit groups). Each sample size is larger than 30. And the boxplots did not reveal strong skew.  
+
+```{r}
+nc %>%
+  group_by(habit) %>%
+  summarise(n_habit = n())
+```
+
+#### Exercise 4:  (10 pts) 
+
+~~~
+5pts for each hypothesis
+
+NOTE: it's ok if they don't use notation
+~~~
+
+$H_0: \mu_{smoker} = \mu_{nonsmoker}$
+
+$H_A: \mu_{smoker} \ne \mu_{nonsmoker}$
+
+#### Exercise 5: (8 pts)
+
+~~~
+- 4pts for code, 
+- 4pts for stating the CI and interpretation
+~~~
+
+The 95% confidence interval for the weight difference in babies born to non-smokers and smokers is (.0508,.5803) with non-smokers having larger babies on average. We are 95% confident that the mean weight difference between babies born to smokers and non-smokers is between .0508 and .5803 pounds.
+
+```{r load-inference}
+load(url("https://stat.duke.edu/~mc301/R/fun/inference.RData"))
+```
+
+```{r}
+inference(y = weight, x = habit, data=nc, statistic = "mean", type = "ci", method = "theoretical")
+```
+
+* * *
+
+
+## More Practice (28 points):
+
+#### Exercise 7: (8 pts) 
+
+~~~
+4pts for code
+4pts for interpretation
+~~~
+
+We are 95% confident that the true mean length of pregnacies lies between 38.1528 and 38.5165 weeks. 
+
+```{r}
+inference(y = weeks, data=nc, statistic = "mean", type = "ci", method = "theoretical")
+```
+
+#### Exercise 8: (8 pts)
+
+~~~
+4pts for code
+4pts for wide/narrow comparison
+~~~
+
+90\% CI is narrower than 95\% CI. 
+
+```{r}
+inference(y = weeks, data=nc, statistic = "mean", type = "ci", method = "theoretical", conf_level = 0.90)
+```
+
+#### Exercise 9: (12 pts) 
+
+~~~
+3pts for alpha
+3pts for checking for inference conditions
+3pts for code
+3pts for interpretation
+~~~
+
+Before running the test, set $\alpha = .05$.
+
+**Check conditions:**
+
+1. Independence within groups: We are told that the sample is random, and the two sample sizes (867 for younger moms and 133 for mature moms) are less than 10% of their prospective populations.
+
+2. Independence between groups: We have no reason to suspect that the groups aren't independent of each other.
+
+3. Normality: Distributions of weights not heavily skewed (see plot below).
+
+After running the hypothesis test, we see the resulting p-value is .1711. This means that if there were no difference in average weight gained between mature mothers and younger mothers, we would expect to see a difference of 1.7697 pounds or more in about 17.11% of repeated random samples from the population. Since our $p-value > \alpha$, we fail to reject the null hypothesis and thus cannot conclude whether or not there is a difference in the true average weight gained by the two groups.
+
+```{r}
+inference(y = gained, x = mature, data=nc, statistic = "mean", type = "ht", null = 0, alternative = "twosided", method = "theoretical")
+```
+
+<!-- #### Exercise 10: (2 pt - method might vary, give credit as long as method is shown/explained and the answer is correct) -->
+
+<!-- The cutoff is 34 (or 35) years. -->
+
+<!-- ```{r} -->
+<!-- nc %>% -->
+<!--   group_by(mature) %>% -->
+<!--     summarise(minmage=min(mage), maxmage=max(mage)) -->
+<!-- ``` -->
+
+<!-- #### Exercise 11: (12 pts - 3 pt for question and setting hypotheses, 3 pt for checking conditions, 3 pt for output, 3 pt for conclusion in context) -->
+
+<!-- *(Answers may vary)* -->
+
+<!-- **Question & Hypotheses:** Is the average length of pregnancy for younger mothers different than the average length of pregnancy for mature mothers?  -->
+
+<!-- $H_0: \mu_{younger} = \mu_{mature}$ -->
+
+<!-- $H_A: \mu_{younger} \ne \mu_{mature}$ -->
+
+<!-- **Check conditions:** -->
+<!-- 1. Independence within groups: We are told that the sample is random, and the two sample sizes (867 for nonsmokers and 133 for smokers) are less than 10% of their prospective populations. -->
+<!-- 2. Independence between groups: We have no reason to suspect that the groups aren't independent of each other. -->
+<!-- 3. Normality: Distributions of weights not heavily skewed (see plot below). -->
+
+<!-- **Conclusion:** -->
+<!-- Since p-value is greater than 0.05, we fail to reject the null. The data does not provide convincing evidence that the average length of pregnancy for younger mothers is different than the average length of pregnancy for mature mothers. -->
+
+<!-- ```{r fig.height=3, fig.width=8} -->
+<!-- inference(y = weeks, x = mature, data=nc, statistic = "mean", type = "ht", null = 0, alternative = "twosided", method = "theoretical") -->
+<!-- ``` -->

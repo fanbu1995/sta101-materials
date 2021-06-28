@@ -1,0 +1,140 @@
+---
+title: "Lab 1 - Intro to R and RStudio - KEY"
+author: "Total: 90 pts"
+date: ""
+output: 
+  html_document: 
+    highlight: pygments
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+* * *
+
+## Lab report
+
+**Load Arbuthnot data**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/arbuthnot.RData"))
+```
+
+#### Exercise 1:
+
+~~~
+5 pts - no narrative needed
+~~~
+
+Either of the following is considered correct:
+
+```{r}
+arbuthnot$girls
+```
+
+```{r}
+arbuthnot %>%
+  select(girls)
+```
+
+#### Exercise 2:
+
+~~~
+15 pts:
+* 7 pts for plot
+* 8 pts for interpretation
+~~~
+
+* The overall trend of number of girls baptized over years is upwards. (2 pts)
+* However there is a sharp dip between 1640 - 1650. Baptisms of girls pick up again in 1660. (4 pts)
+* The rate of increase slows down around 1690. (2 pts)
+
+```{r}
+qplot(x = year, y = girls, data = arbuthnot, geom = "line")
+```
+
+#### Exercise 3:
+
+~~~
+20 pts:
+* 6 pts for creating the new variables
+* 6 pts for plot
+* 8 pts for interpretation
+~~~
+
+* The proportions of boys baptized each year are slightly over 50%. (4 pts)
+* There are cyclical patterns but overall there seems to be a slight decrease in the proportions over time. (4 pts)
+
+```{r fig.width=7, fig.height=5}
+arbuthnot <- arbuthnot %>%
+  mutate(total = boys + girls) %>%
+  mutate(boy_ratio = boys / total)
+
+qplot(x = year, y = boy_ratio, data = arbuthnot, geom = "line")
+```
+
+* * *
+
+### More practice
+
+**Load present day data**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/present.RData"))
+```
+
+#### 4:
+
+~~~
+15 pts
+~~~
+
+* The years included in the dataset are 1940 - 2013. (5 pts)
+* The dataframe has 74 observations and 3 variables. (5 pts)
+* The variables are `year`, `boys` (number of boys born), and `girls` (number of girls born). (5 pts)
+
+#### 5:
+
+~~~
+5 pts
+~~~
+
+The counts are much higher than in the Arbuthnot data set, they are not on the same scale.
+
+#### 6:
+
+~~~
+20 pts:
+* 5 pts for creating the new variables
+* 5 pts for plot
+* 10 pts for interpretation
+~~~
+
+* Arbuthnot's observation about boys being born in greater proportion than girls holds up in the U.S. as well. (5 pts)
+* However while the ratio of boys is much higher than girls in the 1940s, the ratio decreases and approaches 50% throughout time. (5 pts)
+
+```{r fig.width=7, fig.height=5}
+present <- present %>%
+  mutate(total = boys + girls) %>%
+  mutate(boy_ratio = boys / total)
+
+qplot(x = year, y = boy_ratio, data = present, geom = "line")
+```
+
+#### 7: 
+
+~~~
+10 pts:
+* 8 pts for code
+* 2 pts for answer in text
+~~~
+
+We saw the most number of births in 2007.
+
+```{r}
+present %>%
+  arrange(desc(total))
+```

@@ -1,0 +1,205 @@
+---
+title: "Lab 2 - Intro to Data - KEY"
+author: "Total: 90 pts"
+date: ""
+output: 
+  html_document: 
+    highlight: pygments
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+* * *
+
+## Lab report
+
+**Load nycflights data**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/nycflights.RData"))
+```
+#### Exercises (45 pts)
+
+#### Exercise 1:
+
+~~~
+8 pts: 
+4 pts - include correct code (already given in lab)
+4 pts - reasonable answer about comparing the histograms
+~~~
+
+The narrowest bins are from binwidth = 15, then the default (binwidth = 30), then the binwidth = 150 histogram. The smallest and largest widths can make it hard to see the distributions well.
+
+```{r ex1}
+qplot(x = dep_delay, data = nycflights, geom = "histogram")
+qplot(x = dep_delay, data = nycflights, geom = "histogram", binwidth = 15)
+qplot(x = dep_delay, data = nycflights, geom = "histogram", binwidth = 150)
+```
+
+#### Exercise 2:
+
+~~~
+6 pts
+3 pts - Code 
+3 pts - Answer
+~~~
+
+68 flights meet the criteria
+
+```{r ex 2}
+sfo_feb_flights <- filter(nycflights, dest == "SFO", month == 2)
+nrow(sfo_feb_flights)
+```
+
+#### Exercise 3:
+
+~~~
+11 pts:
+5 pts - Code (2pt for the histogram, 3pt for the data summary)
+3 pts - Description
+3 pts - Summary stats matches description
+~~~
+
+* The distribution is unimodal and slightly right skewed. It appears to be centered near 0 with several extreme values on the right side. 
+* Because of the presence of skew, we should use median/IQR
+
+```{r}
+qplot(x = arr_delay, data = sfo_feb_flights, geom = "histogram")
+sfo_feb_flights %>%
+  summarise(med = median(arr_delay), iqr = IQR(arr_delay), 
+            min = min(arr_delay), max = max(arr_delay))
+```
+
+#### Exercise 4:
+
+~~~
+6 pts
+4 pts - Code
+2 pt - Choosing DL (Delta) & UA (United Airlines)
+~~~
+
+DA (Delta) and UA (United) have the same, and highest, variability.
+
+```{r}
+sfo_feb_flights %>%
+  group_by(carrier) %>%
+  summarise(med_adel = median(arr_delay), IQR_adel = IQR(arr_delay), n = n()) %>%
+  arrange(IQR_adel)
+```
+
+#### Exercise 5:
+
+~~~
+9 pts 
+4 pts - Choosing the right months (2pt for July, 2pt for December)
+5 pts - Choosing the right measure
+~~~
+
+July has the largest mean delay out of all the months at 20.75 minutes. December has the largest median delay at 1 minute. 
+
+Median would be more reliable as we already saw that delays were right skewed.
+
+```{r}
+nycflights %>%
+  group_by(month) %>%
+  summarise(mean_ddel = mean(dep_delay)) %>%
+  arrange(desc(mean_ddel))
+
+nycflights %>%
+    group_by(month) %>%
+    summarise(median_dd = median(dep_delay)) %>%
+    arrange(desc(median_dd))
+```
+
+#### Exercise 6:
+
+~~~
+5 pts - Choosing LGA
+(code given)
+~~~
+
+Choose LGA.
+
+```{r}
+nycflights <- nycflights %>%
+  mutate(dep_type = ifelse(dep_delay < 5, "on time", "delayed"))
+
+nycflights %>%
+  group_by(origin) %>%
+  summarise(ot_dep_rate = sum(dep_type == "on time") / n()) %>%
+  arrange(desc(ot_dep_rate))
+```
+
+* * *
+
+### More practice: (45 pts)
+
+#### 7:
+
+~~~
+6 pts - Code
+(no narrative needed)
+~~~
+
+```{r}
+nycflights <- nycflights %>%
+  mutate(avg_speed = distance / (air_time / 60))
+```
+
+
+#### 8:
+
+~~~
+17 pts:
+6 pts - Code
+6 pts - Relationship
+5 pts - Mentioning the gap in distances
+~~~
+
+There is a postive association between distance and average speed. However, the points are not evenly distributed along the x-axis. There is a large gap with only a couple observations between 2750 and 4750 miles. This is probably due to the finite number of destinations that the flights go to.
+
+    
+```{r}
+qplot(y = avg_speed, x = distance, data = nycflights, geom = "point")
+```
+
+#### 9: 
+
+~~~
+12 pts:
+8 pts - code
+4 pts - answer in text
+~~~
+
+18.33% of flights that depart late arrive on time.
+
+```{r}
+nycflights %>%
+  mutate(arr_type = ifelse(arr_delay <= 0, "on time", "delayed")) %>%
+  group_by(dep_type) %>%
+  summarise(on_time_perc = sum(arr_type == "on time") / n())
+head(nycflights)
+```
+
+#### 10: 
+
+~~~
+10 pts:
+5 pts - Code
+5 pts - Reasonable answer on the cutoff
+~~~
+
+It seems that if you are delayed by less than 25 minutes for departure, you can still reasonably expect to get to your destination on time. If you are delayed by at least 50 minutes for departure, you essentially have no chance at arriving on time.
+
+```{r}
+dl_aa_ua <- nycflights %>%
+  filter(carrier == "AA" | carrier == "DL" | carrier == "UA")
+qplot(x = dep_delay, y = arr_delay, data = dl_aa_ua, color = carrier)
+```
+
+    

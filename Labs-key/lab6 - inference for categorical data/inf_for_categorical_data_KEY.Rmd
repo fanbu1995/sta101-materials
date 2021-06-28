@@ -1,0 +1,230 @@
+---
+title: "Lab 6 - Inference for categorical data - KEY"
+output: 
+  html_document: 
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+* * *
+
+**Load atheism dataset:**
+```{r}
+load(url("https://stat.duke.edu/~mc301/data/atheism.RData"))
+```
+
+**Load inference function:**
+```{r}
+load(url("https://stat.duke.edu/~mc301/R/fun/inference.RData"))
+```
+
+
+## Exercises: (60 points)
+
+#### Exercise 1: (4 points)
+
+(2 pt) These percentages are sample statistics 
+
+(2 pt) because they are taken from a poll of samples of a population, not a poll of the 
+entire population.
+
+#### Exercise 2: (4 points)
+
+(2 pt) In order to generalize the report’s findings, we must assume that the sampling 
+method was random and representative of the population as a whole. 
+
+(2 pt) This is not a reasonable assumption. The polls are only drawn from 57 of the 196 countries in existence today. Page 11 shows that some people are also less likely to say whether or not they are atheist.
+
+#### Exercise 3: (4 points)
+
+(2 pt) Each row of Table 6 represents a country.
+
+(2 pt) Each row of `atheism` represents an individual who responded to the survey.
+
+#### Exercise 4: (4 points)
+
+(2 pt) Some reasonable code for calculating proportions
+
+(2 pt) The number above agrees with Table 6 in the report, which reports 5%.
+
+```{r us-atheism}
+us12 <- atheism %>%
+  filter(nationality == "United States", year == "2012")
+  
+us12 %>%
+  group_by(response) %>%
+  summarise(n = n()) %>%
+  mutate(prop = round(n / sum(n), 2))
+```
+
+#### Exercise 5: (12 points)
+
+- Independence:
+    - (2 pt) We are not told whether sampling was random or not.
+    - (2 pt) 1002 < 10% of all US population
+    - (2 pt) Assuming sampling was random, we can assume that the response of one 
+    individual in the sample is independent of another.
+
+- Success-failure:
+    - (2 pt) 50 observed successes, and 952 observed failures, both greater than 10.
+    
+(2 pt) Since both conditions are met, we can assume that the sampling distribution of
+atheists in the US is nearly normal.
+
+(2 pt) We are not so confident in the independence condition.
+
+NOTE:  we can be somewhat lenient about the random sampling part in the independence condition.
+
+#### Exercise 6: (6 points)
+
+(2 pt) Code
+
+(2 pt) Correct output
+
+(2 pt) ME = 0.0135
+
+```{r us-atheism-ci, tidy = FALSE}
+inference(y = response, data = us12, statistic = "proportion",
+          type = "ci", method = "theoretical", success = "atheist")
+```
+
+#### Exercise 7: (12 points)
+
+~~~
+NOTE: answers may vary depending on countries they choose.
+Below are two examples.
+
+For each country, should have 
+
+(1) checking conditions
+(2) margin of error calculated
+(3) condifence intervals (write a sentence to state the CI)
+
+~~~
+
+**Turkey:**
+
+(2 pt) Success-failure conditions met, others discussed earlier.
+
+(2 pt) ME = 0.0086
+
+(2 pt) We are 95% confident that 1.17% to 2.9% of Turks are atheists.
+
+```{r}
+turkey12 <- atheism %>%
+  filter(nationality == "Turkey", year == "2012")
+turkey12 %>%
+  group_by(response) %>%
+  summarise(n = n()) %>%
+  mutate(prop = round(n / sum(n), 2))
+inference(y = response, data = turkey12, statistic = "proportion",
+          type = "ci", method = "theoretical", success = "atheist")
+```
+
+
+**Iceland:**
+
+(2 pt) Success-failure conditions met, others discussed earlier.
+
+(2 pt) ME = 0.0201
+
+(2 pt) We are 95% confident that 7.96% to 11.99% of Icelanders are atheists.
+
+```{r}
+iceland12 <- atheism %>%
+  filter(nationality == "Iceland", year == "2012")
+iceland12 %>%
+  group_by(response) %>%
+  summarise(n = n()) %>%
+  mutate(prop = round(n / sum(n), 2))
+inference(y = response, data = iceland12, statistic = "proportion",
+          type = "ci", method = "theoretical", success = "atheist")
+```
+
+#### Exercise 8: (6 points)
+
+(2 pt) As $p$ increases, the margin of error increases, until $p = 0.5$, and then as $p$
+increases $ME$ also decreases.
+
+(2 pt) Code for plot
+
+(2 pt) Display of the plot
+
+```{r}
+n <- 1000
+p <- seq(0, 1, 0.01)
+me <- 2 * sqrt(p * (1 - p)/n)
+dd <- data.frame(p = p, me = me)
+qplot(x = p, y = me, data = dd, 
+      ylab = "Margin of Error", xlab = "Population Proportion")
+```
+
+
+#### Exercise 9: (2 points)
+
+Distribution of $\hat{p}$'s is centered at 0.1, and the Shape is somewhat normal (unimodal, symmetric, bell-shaped). 
+
+#### Exercise 10: (2 points)
+
+Shape and spread remain similar as distribution center moves to population parameter.
+
+#### Exercise 11: (2 points)
+
+As n increases, distribution of $\hat{p}$'s becomes more normal.
+
+#### Exercise 12: (2 points)
+
+No, the sampling distribution is not sufficiently normal. Also the n*p rule (success condition) does not hold.
+
+* * *
+
+## More Practice (30 points)
+
+#### 13: (6 points)
+
+```{r}
+spain <- atheism %>%
+  filter(nationality == "Spain")
+inference(y = response, x = factor(year), data = spain, null = 0, 
+          statistic = "proportion", type = "ht", method = "theoretical", 
+          success = "atheist", alternative = "twosided")
+```
+
+
+#### 14: (12 points - 6 points for HT, 6 points for CI)
+
+```{r}
+us <- atheism %>%
+  filter(nationality == "United States")
+inference(y = response, x = factor(year), data = us, null = 0, 
+          statistic = "proportion", type = "ht", method = "theoretical", 
+          success = "atheist", alternative = "twosided")
+
+inference(y = response, x = factor(year), data = us, 
+          statistic = "proportion", type = "ci", method = "theoretical", 
+          success = "atheist")
+```
+
+
+#### 15: (4 points)
+
+```{r}
+39 * 0.05
+```
+
+#### 16: (8 points - 2 for p, 2 for ME, 4 for calculating n and answer)
+
+(1 pt) At least 9,604 respondents.
+
+```{r}
+p <- 0.5
+ME <- 0.01
+ceiling(1.96^2 * (0.5 * 0.5) / (ME^2))
+```
+
